@@ -14,7 +14,7 @@
     "gsap": "^3.13.0",
     "imagesloaded": "^5.0.0",
     "jquery": "^3.7.1",
-    "next": "15.4.2",
+    "next": "^16.1.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sass": "^1.75.0",
@@ -28,7 +28,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.4.2",
+    "eslint-config-next": "^16.1.6",
     "typescript": "^5"
   }
 }
