@@ -1,10 +1,33 @@
 import Image from "next/image";
 import shape_1 from "@/assets/imgs/shape/shape-10.webp";
 import shape_2 from "@/assets/imgs/shape/shape-11.webp";
-import gallery_img from "@/assets/imgs/gallery/image-10.webp";
 import Link from "next/link";
+import { getImageUrl } from "@/sanity/lib/image";
+import type { HeroSocialLink, SanityImage } from "@/types/sanity";
 
-export default function HeroThree() {
+interface HeroThreeProps {
+  subtitle?: string;
+  title?: string;
+  location?: string;
+  locationImage?: SanityImage;
+  description?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  stats?: string;
+  socialLinks?: HeroSocialLink[];
+}
+
+export default function HeroThree({
+  subtitle = "Full-service digital agency — Since 2009®",
+  title = "Strategy-driven digital agency, based in",
+  location = "Fethiye",
+  locationImage,
+  description = "We build brands that perform. From social media management and Google & Meta ads to full-scale digital marketing strategy, we turn visibility into measurable growth.",
+  buttonText = "Get started",
+  buttonLink = "/contact",
+  stats = "17 years of digital excellence",
+  socialLinks = [],
+}: HeroThreeProps) {
   return (
     <section className="hero-area-3">
       <div className="container large">
@@ -12,75 +35,63 @@ export default function HeroThree() {
           <div className="section-header">
             <div className="section-title-wrapper">
               <div className="subtitle-wrapper">
-                <span className="section-subtitle">
-                  Full-service digital agency — Since 2009®
-                </span>
+                <span className="section-subtitle">{subtitle}</span>
               </div>
               <div className="title-wrapper">
                 <h1
                   className="section-title font-sequelsans-romanbody fade-anim"
                   data-delay="0.45"
                 >
-                  Strategy-driven digital
-                  <Image
-                    className="title-shape-1"
-                    src={shape_1}
-                    alt="image"
-                  />
-                  agency, based in {" "}
+                  {title}
+                  <Image className="title-shape-1" src={shape_1} alt="shape" style={{ filter: "grayscale(100%) brightness(0.7)" }} />
+                  {" "}
                   <span
                     className="text-underline hover-image-wrpper"
-                    data-label="activewear"
+                    data-label="location"
                   >
-                    Fethiye{" "}
+                    {location}{" "}
                     <Image
                       className="image-hover"
-                      src={gallery_img}
-                      alt="activewear"
-                      data-image="activewear"
+                      src={getImageUrl(locationImage, 400, 300)}
+                      alt={location}
+                      width={400}
+                      height={300}
+                      data-image="location"
                       style={{ height: "auto" }}
-                    />{" "}
+                    />
                   </span>
-                  <Image
-                    className="title-shape-2"
-                    src={shape_2}
-                    alt="image"
-                  />
+                  <Image className="title-shape-2" src={shape_2} alt="shape" style={{ filter: "grayscale(100%) brightness(0.7)" }} />
                 </h1>
               </div>
             </div>
           </div>
           <div className="section-content">
-            <ul className="social-links fade-anim" data-delay="0.60">
-              <li>
-                <a href="#">Instagram</a>
-              </li>
-              <li>
-                <a href="#">Linkedin</a>
-              </li>
-              <li>
-                <a href="#">Behance</a>
-              </li>
-              <li>
-                <a href="#">X (Twitter)</a>
-              </li>
-            </ul>
+            {Array.isArray(socialLinks) && socialLinks.length > 0 && (
+              <ul className="social-links fade-anim" data-delay="0.60">
+                {socialLinks.map((link) => (
+                  <li key={link._key}>
+                    <a href={link.url} target="_blank" rel="noopener noreferrer">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
             <div className="content-middle fade-anim" data-delay="0.75">
-              <p className="text info-text">
-                17 years of <br /> digital excellence
-              </p>
+              <p
+                className="text info-text"
+                dangerouslySetInnerHTML={{
+                  __html: (stats || "17 years of digital excellence").replace(/\n/g, "<br />"),
+                }}
+              />
             </div>
             <div className="content-last fade-anim" data-delay="0.90">
               <div className="text-wrapper">
-                <p className="text about-text rr_title_anim">
-                  We build brands that perform. From social media management
-                  and Google & Meta ads to full-scale digital marketing strategy,
-                  we turn visibility into measurable growth.
-                </p>
+                <p className="text about-text rr_title_anim">{description}</p>
               </div>
               <div className="btn-wrapper">
-                <Link href="/contact" className="rr-btn-group">
-                  <span className="b">Get started</span>
+                <Link href={buttonLink || "/contact"} className="rr-btn-group">
+                  <span className="b">{buttonText}</span>
                   <span className="c">
                     <i className="fa-solid fa-arrow-right"></i>
                   </span>

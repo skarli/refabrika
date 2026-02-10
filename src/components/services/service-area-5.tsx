@@ -1,64 +1,25 @@
-import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { getImageUrl } from "@/sanity/lib/image";
+import type { ServiceItem } from "@/types/sanity";
 
-interface ServiceItem {
-  id: string;
-  number: string;
-  title: string;
-  text: string;
-  image: string;
-  link: string;
-}
-
-const services: ServiceItem[] = [
-  {
-    id: "1",
-    number: "(001)",
-    title: "Social Media Management",
-    text: "End-to-end social media strategy, content creation, and community management across all platforms.",
-    image: "/assets/imgs/project/image-47.webp",
-    link: "/service-details",
-  },
-  {
-    id: "2",
-    number: "(002)",
-    title: "Google & Meta Ads",
-    text: "Data-driven paid advertising campaigns on Google, Facebook, and Instagram to maximize your ROI.",
-    image: "/assets/imgs/project/image-48.webp",
-    link: "/service-details",
-  },
-  {
-    id: "3",
-    number: "(003)",
-    title: "Digital Marketing Strategy",
-    text: "Comprehensive digital strategies tailored to your brand goals, audience, and market positioning.",
-    image: "/assets/imgs/project/image-49.webp",
-    link: "/service-details",
-  },
-  {
-    id: "4",
-    number: "(004)",
-    title: "Brand Identity & Design",
-    text: "Visual identity systems, logo design, and brand guidelines that make your business stand out.",
-    image: "/assets/imgs/project/image-50.webp",
-    link: "/service-details",
-  },
-  {
-    id: "5",
-    number: "(005)",
-    title: "Web Design & Development",
-    text: "High-performance websites and landing pages built to convert visitors into customers.",
-    image: "/assets/imgs/project/image-51.webp",
-    link: "/service-details",
-  },
-];
-
-type IProps = {
+interface ServiceAreaFiveProps {
+  subtitle?: string;
+  sectionTitle?: string;
+  description?: string;
+  services?: ServiceItem[];
   spacing?: string;
-  title_font?: string;
+  titleFont?: string;
 }
 
-const ServiceAreaFive = ({spacing='section-spacing-top', title_font='font-bdogrotesk-regular'}:IProps) => {
+const ServiceAreaFive = ({
+  subtitle = "Services",
+  sectionTitle = "Services we provide",
+  description = "We are here to build solid and courageous brands that can leave a strong mark on the world.",
+  services = [],
+  spacing = "section-spacing-top",
+  titleFont = "font-bdogrotesk-regular",
+}: ServiceAreaFiveProps) => {
   return (
     <section className="service-area-5">
       <div className="container large">
@@ -67,7 +28,7 @@ const ServiceAreaFive = ({spacing='section-spacing-top', title_font='font-bdogro
             <div className="section-title-wrapper">
               <div className="subtitle-wrapper">
                 <span className="section-subtitle">
-                  Services
+                  {subtitle}
                   <svg
                     viewBox="0 0 99 7"
                     fill="none"
@@ -83,42 +44,37 @@ const ServiceAreaFive = ({spacing='section-spacing-top', title_font='font-bdogro
                 </span>
               </div>
               <div className="title-wrapper tt_title_anim">
-                <h2 className={`section-title ${title_font}`}>
-                  Services we provide
-                </h2>
+                <h2 className={`section-title ${titleFont}`}>{sectionTitle}</h2>
               </div>
             </div>
           </div>
 
           <div className="services-wrapper-box">
             <div className="text-wrapper fade-anim">
-              <p className="info-text">
-                We are here to build solid and courageous brands that can leave
-                a strong mark on the world.
-              </p>
+              <p className="info-text">{description}</p>
             </div>
 
             <div className="services-wrapper-5">
-              {services.map((service) => (
-                <a href={service.link} key={service.id}>
+              {(services || []).map((service, idx) => (
+                <Link href={`/services/${service.slug?.current}`} key={service._id || idx}>
                   <div className="service-box fade-anim">
                     <div className="count">
-                      <span className="number">{service.number}</span>
+                      <span className="number">{service.number || `(00${idx + 1})`}</span>
                     </div>
                     <div className="content">
                       <h3 className="title">{service.title}</h3>
-                      <p className="text">{service.text}</p>
+                      <p className="text">{service.shortDescription}</p>
                     </div>
                     <div className="thumb">
                       <Image
-                        src={service.image}
-                        alt={service.title}
+                        src={getImageUrl(service.thumbnail, 165, 92)}
+                        alt={service.title || "Service"}
                         width={165}
                         height={92}
                       />
                     </div>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

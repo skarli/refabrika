@@ -3,23 +3,53 @@ import HeaderSeven from "@/layout/header/header-seven";
 import MainWrapper from "@/components/wrapper/main-wrapper";
 import FooterFour from "@/layout/footer/footer-four";
 import FaqWrapper from "./_components/faq-wrapper";
-import { AccordionWrapper } from "@/components/faq/faq-area";
+import FAQArea from "@/components/faq/faq-area";
 import CtaAreaFour from "@/components/cta/cta-area-4";
+import { FAQPageSchema, BreadcrumbSchema } from "@/components/seo/json-ld";
+import {
+  getFaqPage,
+  getSiteSettings,
+  getNavigation,
+} from "@/sanity/lib/fetch";
 
-export const metadata: Metadata = {
-  title: "FAQ — re:fabrika",
-  description:
-    "Frequently asked questions about re:fabrika's digital marketing and advertising services.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const [faqPage, siteSettings] = await Promise.all([
+    getFaqPage(),
+    getSiteSettings(),
+  ]);
 
-export default function FaqPage() {
+  return {
+    title: faqPage?.seo?.metaTitle || `FAQ — ${siteSettings?.siteName || "re:fabrika"}`,
+    description:
+      faqPage?.seo?.metaDescription ||
+      "Frequently asked questions about re:fabrika's digital marketing and advertising services.",
+  };
+}
+
+export default async function FaqPage() {
+  const [faqPage, siteSettings, navigation] = await Promise.all([
+    getFaqPage(),
+    getSiteSettings(),
+    getNavigation(),
+  ]);
+
   return (
     <>
-      {/* Header area start */}
-      <HeaderSeven />
-      {/* Header area end */}
+      {faqPage && <FAQPageSchema faqPage={faqPage} />}
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "FAQ", url: "/faq" },
+        ]}
+      />
 
-      {/* Main wrapper start */}
+      <HeaderSeven
+        headerText={siteSettings?.headerText}
+        logoImage={siteSettings?.logo}
+        navigation={navigation || undefined}
+        siteSettings={siteSettings || undefined}
+      />
+
       <MainWrapper
         bodyCls={[
           "body-wrapper",
@@ -30,46 +60,25 @@ export default function FaqPage() {
         ]}
       >
         <FaqWrapper>
-          <main style={{ paddingTop: '120px' }}>
-
-            {/* faq area start */}
-            <section className="faq-area-faq-page">
-              <div className="container large">
-                <div className="faq-area-faq-page-inner">
-                  <div className="section-header fade-anim">
-                    <div className="section-title-wrapper">
-                      <div className="subtitle-wrapper">
-                        <span className="section-subtitle">FAQ</span>
-                      </div>
-                      <div className="title-wrapper">
-                        <h2 className="section-title font-sequelsans-romanbody">Learn some common
-                          answers about newly
-                          projects</h2>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* accordion wrapper */}
-                  <AccordionWrapper />
-                  {/* accordion wrapper */}
-
-                </div>
-              </div>
-            </section>
-            {/* faq area end */}
-
+          <main style={{ paddingTop: "120px" }}>
+            <FAQArea
+              pageTitle={faqPage?.pageTitle}
+              faqs={faqPage?.faqs}
+            />
           </main>
 
-          {/* CTA area start */}
-          <CtaAreaFour />
-          {/* CTA area end */}
+          <CtaAreaFour
+            text={siteSettings?.ctaText}
+            link={siteSettings?.ctaLink}
+          />
 
-          {/* Footer area start */}
-          <FooterFour />
-          {/* Footer area end */}
+          <FooterFour
+            logoImage={siteSettings?.logo}
+            footerText={siteSettings?.footerText}
+            navigation={navigation || undefined}
+          />
         </FaqWrapper>
       </MainWrapper>
-      {/* Main wrapper end */}
     </>
   );
 }

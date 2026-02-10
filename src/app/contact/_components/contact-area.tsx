@@ -1,12 +1,72 @@
 "use client";
 import { FormEvent, useState } from "react";
+import type { ContactPage, SiteSettings } from "@/types/sanity";
 
-export default function ContactArea() {
+interface ContactAreaProps {
+  contactPage?: ContactPage;
+  siteSettings?: SiteSettings;
+}
+
+export default function ContactArea({ contactPage, siteSettings }: ContactAreaProps) {
   const [budget, setBudget] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+  const pageTitle = contactPage?.pageTitle || "Let's drop us a line and get the project started.";
+  const sectionTitle = contactPage?.sectionTitle || "Get in touch";
+  const sectionDescription =
+    contactPage?.sectionDescription ||
+    "We're excited to hear from you and let's start something special together";
+  const followTitle = contactPage?.followTitle || "Follow";
+  const formLabels = contactPage?.formLabels || {};
+  const budgetOptions = contactPage?.budgetOptions || [
+    "5,000 - 10,000",
+    "10,000 - 15,000",
+    "15,000 - 20,000",
+    "20,000 - 25,000",
+    "25,000 - Above",
+  ];
+
+  const contactEmail = siteSettings?.contactInfo?.email || "sadettin@refabrika.com";
+  const socialLinks = siteSettings?.socialLinks || {};
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  }
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      company: formData.get("company"),
+      budget: budget,
+      solution: formData.get("solution"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        (e.target as HTMLFormElement).reset();
+        setBudget("");
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="contact-area-contact-page">
       <div className="container large">
@@ -17,33 +77,28 @@ export default function ContactArea() {
                 <span className="section-subtitle">Contact</span>
               </div>
               <div className="title-wrapper">
-                <h2 className="section-title font-sequelsans-romanbody">
-                  Let’s drop us a line and get the project started.
-                </h2>
+                <h2 className="section-title font-sequelsans-romanbody">{pageTitle}</h2>
               </div>
             </div>
           </div>
           <div className="section-content-wrapper fade-anim">
             <div className="section-content">
               <div className="contact-mail">
-                <p className="title">Get in touch</p>
+                <p className="title">{sectionTitle}</p>
                 <p className="text">
-                  We’re excited to hear from you and let’s start something
-                  special together <br />
-                  <a href="mailTo:sadettin@refabrika.com">
-                    sadettin@refabrika.com
-                  </a>
+                  {sectionDescription} <br />
+                  <a href={`mailTo:${contactEmail}`}>{contactEmail}</a>
                 </p>
               </div>
               <div className="contact-social">
-                <p className="title">Follow</p>
+                <p className="title">{followTitle}</p>
                 <div className="social-links">
-                  <a href="#">Facebook</a>
-                  <a href="#">Twitter</a>
-                  <a href="#">LinkedIn</a>
-                  <a href="#">Instagram</a>
-                  <a href="#">Dribbble</a>
-                  <a href="#">Behance</a>
+                  {socialLinks.facebook && <a href={socialLinks.facebook}>Facebook</a>}
+                  {socialLinks.twitter && <a href={socialLinks.twitter}>Twitter</a>}
+                  {socialLinks.linkedin && <a href={socialLinks.linkedin}>LinkedIn</a>}
+                  {socialLinks.instagram && <a href={socialLinks.instagram}>Instagram</a>}
+                  {socialLinks.dribbble && <a href={socialLinks.dribbble}>Dribbble</a>}
+                  {socialLinks.behance && <a href={socialLinks.behance}>Behance</a>}
                 </div>
               </div>
             </div>
@@ -55,23 +110,26 @@ export default function ContactArea() {
                       type="text"
                       name="name"
                       id="name"
-                      placeholder="Name*"
+                      placeholder={formLabels.namePlaceholder || "Name*"}
+                      required
                     />
                   </div>
                   <div className="contact-formfield">
                     <input
-                      type="text"
+                      type="email"
                       name="email"
                       id="email"
-                      placeholder="Email*"
+                      placeholder={formLabels.emailPlaceholder || "Email*"}
+                      required
                     />
                   </div>
                   <div className="contact-formfield">
                     <input
-                      type="text"
+                      type="tel"
                       name="phone"
                       id="phone"
-                      placeholder="Phone*"
+                      placeholder={formLabels.phonePlaceholder || "Phone*"}
+                      required
                     />
                   </div>
                   <div className="contact-formfield">
@@ -79,7 +137,7 @@ export default function ContactArea() {
                       type="text"
                       name="company"
                       id="company"
-                      placeholder="Company"
+                      placeholder={formLabels.companyPlaceholder || "Company"}
                     />
                   </div>
                   <div className="contact-formfield">
@@ -88,15 +146,16 @@ export default function ContactArea() {
                       id="Budget"
                       value={budget}
                       onChange={(e) => setBudget(e.target.value)}
+                      required
                     >
                       <option value="" disabled>
-                        Budget*
+                        {formLabels.budgetPlaceholder || "Budget*"}
                       </option>
-                      <option value="1">5,000 - 10,000</option>
-                      <option value="2">10,000 - 15,000</option>
-                      <option value="3">15,000 - 20,000</option>
-                      <option value="4">20,000 - 25,000</option>
-                      <option value="5">25,000 - Above</option>
+                      {budgetOptions.map((option, idx) => (
+                        <option key={idx} value={option}>
+                          {option}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div className="contact-formfield">
@@ -104,7 +163,8 @@ export default function ContactArea() {
                       type="text"
                       name="solution"
                       id="solution"
-                      placeholder="Solution*"
+                      placeholder={formLabels.solutionPlaceholder || "Solution*"}
+                      required
                     />
                   </div>
                   <div className="contact-formfield message">
@@ -112,19 +172,35 @@ export default function ContactArea() {
                       type="text"
                       name="message"
                       id="message"
-                      placeholder="Message*"
+                      placeholder={formLabels.messagePlaceholder || "Message*"}
+                      required
                     />
                   </div>
                 </div>
                 <div className="submit-btn">
-                  <button type="submit" className="rr-btn">
+                  <button type="submit" className="rr-btn" disabled={isSubmitting}>
                     <span className="btn-wrap">
-                      <span className="text-one">Send Message</span>
-                      <span className="text-two">Send Message</span>
+                      <span className="text-one">
+                        {isSubmitting ? "Sending..." : formLabels.buttonText || "Send Message"}
+                      </span>
+                      <span className="text-two">
+                        {isSubmitting ? "Sending..." : formLabels.buttonText || "Send Message"}
+                      </span>
                     </span>
                   </button>
                 </div>
-                <div id="response-message"></div>
+                <div id="response-message">
+                  {submitStatus === "success" && (
+                    <p style={{ color: "green", marginTop: "1rem" }}>
+                      Thank you! Your message has been sent successfully.
+                    </p>
+                  )}
+                  {submitStatus === "error" && (
+                    <p style={{ color: "red", marginTop: "1rem" }}>
+                      Sorry, there was an error. Please try again.
+                    </p>
+                  )}
+                </div>
               </form>
             </div>
           </div>

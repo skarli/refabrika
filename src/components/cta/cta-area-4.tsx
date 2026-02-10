@@ -1,7 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CtaAreaFour() {
+interface CtaAreaFourProps {
+  text?: string;
+  link?: string;
+}
+
+export default function CtaAreaFour({
+  text = "Let's build a brand now",
+  link = "/contact",
+}: CtaAreaFourProps) {
+  // Split text to handle "Let's" and rest separately for styling
+  const safeText = text || "Let's build a brand now";
+  const safeLink = link || "/contact";
+  const parts = safeText.split(" ");
+  const firstWord = parts[0];
+  const restWords = parts.slice(1).join(" ");
+
   return (
     <section className="cta-area-4">
       <div className="container large">
@@ -10,8 +25,8 @@ export default function CtaAreaFour() {
             <div className="section-title-wrapper">
               <div className="title-wrapper">
                 <h2 className="section-title font-bdogrotesk-regular">
-                  <Link href="/contact">
-                    Let’s
+                  <Link href={safeLink}>
+                    {firstWord}
                     <span className="icon">
                       <Image
                         className="first"
@@ -19,7 +34,7 @@ export default function CtaAreaFour() {
                         alt="icon"
                         width={101}
                         height={101}
-                        style={{height:'auto'}}
+                        style={{ height: "auto" }}
                       />
                       <Image
                         className="second"
@@ -27,11 +42,11 @@ export default function CtaAreaFour() {
                         alt="icon"
                         width={101}
                         height={101}
-                        style={{height:'auto'}}
+                        style={{ height: "auto" }}
                       />
                     </span>{" "}
                     <br />
-                    build a brand now
+                    {restWords}
                   </Link>
                 </h2>
               </div>

@@ -13,18 +13,57 @@ import BlogArea from "@/components/blog/blog-area";
 import FooterFour from "@/layout/footer/footer-four";
 import shape from "@/assets/imgs/shape/shape-9.webp";
 import CustomCursor from "@/components/common/custom-cursor";
+import {
+  OrganizationSchema,
+  WebSiteSchema,
+  LocalBusinessSchema,
+} from "@/components/seo/json-ld";
+import {
+  getHomePage,
+  getSiteSettings,
+  getNavigation,
+} from "@/sanity/lib/fetch";
 
-export const metadata: Metadata = {
-  title: "Landing Page",
-  description: "Landing page",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const [homePage, siteSettings] = await Promise.all([
+    getHomePage(),
+    getSiteSettings(),
+  ]);
 
-export default function HomePage() {
+  return {
+    title: homePage?.seo?.metaTitle || siteSettings?.siteName || "re:fabrika",
+    description:
+      homePage?.seo?.metaDescription ||
+      siteSettings?.siteDescription ||
+      "Digital marketing & brand growth agency",
+    openGraph: {
+      title: homePage?.seo?.metaTitle || siteSettings?.siteName,
+      description: homePage?.seo?.metaDescription || siteSettings?.siteDescription,
+    },
+  };
+}
+
+export default async function HomePage() {
+  const [homePage, siteSettings, navigation] = await Promise.all([
+    getHomePage(),
+    getSiteSettings(),
+    getNavigation(),
+  ]);
+
   return (
     <>
+      <OrganizationSchema siteSettings={siteSettings} />
+      <WebSiteSchema siteSettings={siteSettings} />
+      <LocalBusinessSchema siteSettings={siteSettings} />
+
       <CustomCursor />
 
-      <HeaderSeven />
+      <HeaderSeven
+        headerText={siteSettings?.headerText}
+        logoImage={siteSettings?.logo}
+        navigation={navigation || undefined}
+        siteSettings={siteSettings || undefined}
+      />
 
       <MainWrapper
         bodyCls={[
@@ -48,16 +87,53 @@ export default function HomePage() {
             </div>
 
             <main>
-              <HeroThree />
-              <AboutTwo />
-              <WorkAreaThree />
-              <ServiceAreaFive />
+              <HeroThree
+                subtitle={homePage?.heroSubtitle}
+                title={homePage?.heroTitle}
+                location={homePage?.heroLocation}
+                locationImage={homePage?.heroLocationImage}
+                description={homePage?.heroDescription}
+                buttonText={homePage?.heroButtonText}
+                buttonLink={homePage?.heroButtonLink}
+                stats={homePage?.heroStats}
+                socialLinks={homePage?.heroSocialLinks}
+              />
+              <AboutTwo
+                title={homePage?.aboutTitle}
+                yearStart={homePage?.aboutYearStart}
+                yearEnd={homePage?.aboutYearEnd}
+                description={homePage?.aboutDescription}
+                buttonText={homePage?.aboutButtonText}
+                buttonLink={homePage?.aboutButtonLink}
+              />
+              <WorkAreaThree
+                sectionTitle={homePage?.workSectionTitle}
+                buttonText={homePage?.workButtonText}
+                works={homePage?.featuredWorks}
+              />
+              <ServiceAreaFive
+                subtitle={homePage?.servicesSubtitle}
+                sectionTitle={homePage?.servicesSectionTitle}
+                description={homePage?.servicesDescription}
+                services={homePage?.featuredServices}
+              />
               <ClientArea />
-              <BlogArea />
+              <BlogArea
+                sectionTitle={homePage?.blogSectionTitle}
+                buttonText={homePage?.blogButtonText}
+                blogs={homePage?.featuredBlogs}
+              />
             </main>
 
-            <CtaAreaFour />
-            <FooterFour />
+            <CtaAreaFour
+              text={siteSettings?.ctaText}
+              link={siteSettings?.ctaLink}
+            />
+            <FooterFour
+              logoImage={siteSettings?.logo}
+              footerText={siteSettings?.footerText}
+              navigation={navigation || undefined}
+            />
           </div>
         </LandingWrapper>
       </MainWrapper>

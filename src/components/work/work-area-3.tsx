@@ -1,47 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { getImageUrl } from "@/sanity/lib/image";
+import type { PortfolioItem } from "@/types/sanity";
 
-const workItems = [
-  {
-    img: "/assets/imgs/project/image-19.webp",
-    title: "Harash Denmark",
-    date: "2010",
-    tag: "Branding"
-  },
-  {
-    img: "/assets/imgs/project/image-20.webp",
-    title: "Saudi Lime Green",
-    date: "2010",
-    tag: "Marketing"
-  },
-  {
-    img: "/assets/imgs/project/image-21.webp",
-    title: "Saudi Venture Capital",
-    date: "2010",
-    tag: "Marketing"
-  },
-  {
-    img: "/assets/imgs/project/image-22.webp",
-    title: "Nilachal Network",
-    date: "2010",
-    tag: "Marketing"
-  },
-  {
-    img: "/assets/imgs/project/image-23.webp",
-    title: "Royal Cash App",
-    date: "2010",
-    tag: "Design"
-  },
-  {
-    img: "/assets/imgs/project/image-24.webp",
-    title: "Mashup Gradient",
-    date: "2010",
-    tag: "Design"
-  },
-];
+interface WorkAreaThreeProps {
+  sectionTitle?: string;
+  buttonText?: string;
+  works?: PortfolioItem[];
+}
 
-export default function WorkAreaThree() {
+export default function WorkAreaThree({
+  sectionTitle = "We find the unique, easy solution for each creative project",
+  buttonText = "View all work",
+  works = [],
+}: WorkAreaThreeProps) {
   return (
     <section className="work-area-3">
       <div className="container large">
@@ -50,10 +22,10 @@ export default function WorkAreaThree() {
             <div className="section-title-wrapper">
               <div className="title-wrapper">
                 <h2 className="section-title font-sequelsans-romanbody rr_title_anim">
-                  We find the unique, easy solution for each creative project{" "}
+                  {sectionTitle}{" "}
                   <span className="mb-14">
-                    <Link href="/portfolio-5" className="rr-btn-group">
-                      <span className="b">View all work</span>
+                    <Link href="/portfolio" className="rr-btn-group">
+                      <span className="b">{buttonText}</span>
                       <span className="c">
                         <i className="fa-solid fa-arrow-right"></i>
                       </span>
@@ -65,14 +37,14 @@ export default function WorkAreaThree() {
           </div>
           <div className="works-wrapper-box">
             <div className="works-wrapper-3">
-              {workItems.map((item, idx) => (
-                <div className="work-box fade-anim" key={item.title + idx}>
+              {(works || []).map((item, idx) => (
+                <div className="work-box fade-anim" key={item._id || idx}>
                   <div className="thumb">
                     <div className="image scale" data-cursor-text="View Project">
-                      <Link href="/portfolio-details">
+                      <Link href={`/portfolio/${item.slug?.current}`}>
                         <Image
-                          src={item.img}
-                          alt="image"
+                          src={getImageUrl(item.thumbnail, 900, 630)}
+                          alt={item.title || "Portfolio"}
                           width={900}
                           height={630}
                           style={{ height: "auto" }}
@@ -82,11 +54,15 @@ export default function WorkAreaThree() {
                   </div>
                   <div className="content">
                     <h3 className="title">
-                      <Link href="/portfolio-details">{item.title}</Link>
+                      <Link href={`/portfolio/${item.slug?.current}`}>
+                        {item.title}
+                      </Link>
                     </h3>
                     <div className="meta">
-                      <span className="date">{item.date}</span>
-                      <span className="tag">{item.tag}</span>
+                      <span className="date">{item.year}</span>
+                      {item.tags && item.tags[0] && (
+                        <span className="tag">{item.tags[0]}</span>
+                      )}
                     </div>
                   </div>
                 </div>

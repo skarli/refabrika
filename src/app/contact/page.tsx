@@ -5,22 +5,42 @@ import ContactWrapper from "./_components/contact-wrapper";
 import ContactArea from "./_components/contact-area";
 import FooterFour from "@/layout/footer/footer-four";
 import CtaAreaFour from "@/components/cta/cta-area-4";
+import {
+  getContactPage,
+  getSiteSettings,
+  getNavigation,
+} from "@/sanity/lib/fetch";
 
+export async function generateMetadata(): Promise<Metadata> {
+  const [contactPage, siteSettings] = await Promise.all([
+    getContactPage(),
+    getSiteSettings(),
+  ]);
 
-export const metadata: Metadata = {
-  title: "Contact — re:fabrika",
-  description:
-    "Get in touch with re:fabrika. Let's talk about your next digital marketing project.",
-};
+  return {
+    title: contactPage?.seo?.metaTitle || `Contact — ${siteSettings?.siteName || "re:fabrika"}`,
+    description:
+      contactPage?.seo?.metaDescription ||
+      "Get in touch with re:fabrika. Let's talk about your next digital marketing project.",
+  };
+}
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const [contactPage, siteSettings, navigation] = await Promise.all([
+    getContactPage(),
+    getSiteSettings(),
+    getNavigation(),
+  ]);
+
   return (
     <>
-      {/* Header area start */}
-      <HeaderSeven />
-      {/* Header area end */}
+      <HeaderSeven
+        headerText={siteSettings?.headerText}
+        logoImage={siteSettings?.logo}
+        navigation={navigation || undefined}
+        siteSettings={siteSettings || undefined}
+      />
 
-      {/* Main wrapper start */}
       <MainWrapper
         bodyCls={[
           "body-wrapper",
@@ -31,25 +51,25 @@ export default function ContactPage() {
         ]}
       >
         <ContactWrapper>
-
-          <main style={{ paddingTop: '120px' }}>
-
-            {/* contact area start */}
-            <ContactArea/>
-            {/* contact area end */}
-
+          <main style={{ paddingTop: "120px" }}>
+            <ContactArea
+              contactPage={contactPage || undefined}
+              siteSettings={siteSettings || undefined}
+            />
           </main>
 
-          {/* CTA area start */}
-          <CtaAreaFour />
-          {/* CTA area end */}
+          <CtaAreaFour
+            text={siteSettings?.ctaText}
+            link={siteSettings?.ctaLink}
+          />
 
-          {/* Footer area start */}
-          <FooterFour />
-          {/* Footer area end */}
+          <FooterFour
+            logoImage={siteSettings?.logo}
+            footerText={siteSettings?.footerText}
+            navigation={navigation || undefined}
+          />
         </ContactWrapper>
       </MainWrapper>
-      {/* Main wrapper end */}
     </>
   );
 }

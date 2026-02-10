@@ -1,9 +1,7 @@
 import React from "react";
 import ClientCapsules from "./client-capsules";
 
-
 const ClientArea = () => {
-
   return (
     <section className="client-area">
       <div className="container large">
@@ -12,14 +10,14 @@ const ClientArea = () => {
             <div className="section-title-wrapper">
               <div className="title-wrapper">
                 <h2 className="section-title font-instrumentsans-medium word-anim">
-                  <span>Client:</span> Helping brands to grow and say their success stories to the world.
+                  <span>Technologies:</span> Powered by Modern Tech Stack
                 </h2>
               </div>
             </div>
             <div className="text-wrapper fade-anim">
               <p className="text">
-                We’re a great team of creatives with a strongest capabilities to helping progressive fields achieve their
-                goals. With the best talent on every project done successfully
+                We leverage cutting-edge technologies and industry-leading tools to build
+                scalable, high-performance digital solutions that drive real results.
               </p>
             </div>
           </div>

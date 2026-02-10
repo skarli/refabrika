@@ -1,152 +1,57 @@
-import React from 'react';
-import Link from 'next/link';
-import Image, { StaticImageData } from 'next/image';
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import type { PortfolioItem } from "@/types/sanity";
 
-// project images 
-import project_1 from '@/assets/imgs/project/image-46.webp';
-import project_2 from '@/assets/imgs/project/image-36.webp';
-import project_3 from '@/assets/imgs/project/image-34.webp';
-import project_4 from '@/assets/imgs/project/image-31.webp';
-import project_5 from '@/assets/imgs/project/image-37.webp';
-import project_6 from '@/assets/imgs/project/image-38.webp';
-import project_7 from '@/assets/imgs/project/image-39.webp';
-import project_8 from '@/assets/imgs/project/image-40.webp';
-import project_9 from '@/assets/imgs/project/image-41.webp';
-import project_10 from '@/assets/imgs/project/image-42.webp';
-import project_11 from '@/assets/imgs/project/image-43.webp';
-import project_12 from '@/assets/imgs/project/image-44.webp';
-import project_13 from '@/assets/imgs/project/image-45.webp';
-
-interface WorkItem {
-  title: string;
-  image: StaticImageData;
-  tags: string;
-  date: string;
+interface WorkAreaSixProps {
+  projects?: PortfolioItem[];
 }
 
-const workItems: WorkItem[] = [
-  {
-    title: 're:fabrika Digital Campaign',
-    image: project_1,
-    tags: 'Social Media, Digital Marketing',
-    date: '(2025)',
-  },
-  {
-    title: 'Al Khobar Uptown',
-    image: project_2,
-    tags: 'Visual Identity, Branding',
-    date: '(2021)',
-  },
-  {
-    title: 'Save Me Saudia',
-    image: project_3,
-    tags: 'Communication, Social Media',
-    date: '(2020)',
-  },
-  {
-    title: 'Lambax Nanak',
-    image: project_4,
-    tags: 'Strategy, Visual Identity, Re-branding',
-    date: '(2022)',
-  },
-  {
-    title: 're:fabrika Digital Campaign',
-    image: project_5,
-    tags: 'Social Media, Digital Marketing',
-    date: '(2025)',
-  },
-  {
-    title: 'Dramatic Natok',
-    image: project_6,
-    tags: 'Communication, Campaign',
-    date: '(2022)',
-  },
-  {
-    title: 'Keshtech Ventures',
-    image: project_7,
-    tags: 'Visual Identity, Branding',
-    date: '(2020)',
-  },
-  {
-    title: 'Pick and Jeep',
-    image: project_8,
-    tags: 'Visual Identity, Re-branding, Packaging',
-    date: '(2021)',
-  },
-  {
-    title: 'Back to Macho School',
-    image: project_9,
-    tags: 'Communication, Campaign , Social Media',
-    date: '(2019)',
-  },
-  {
-    title: 'Cultural Talents',
-    image: project_10,
-    tags: 'Communication, Campaign',
-    date: '(2022)',
-  },
-  {
-    title: 're:fabrika Digital Campaign',
-    image: project_11,
-    tags: 'Social Media, Digital Marketing',
-    date: '(2025)',
-  },
-  {
-    title: 'Dramatic Natok',
-    image: project_12,
-    tags: 'Communication, Campaign',
-    date: '(2022)',
-  },
-  {
-    title: 'Keshtech Ventures',
-    image: project_13,
-    tags: 'Visual Identity, Branding',
-    date: '(2020)',
-  },
-];
-
-export const WorksWrapperSix = () => {
+export const WorksWrapperSix = ({ projects = [] }: WorkAreaSixProps) => {
   return (
     <div className="works-wrapper-6">
-      {workItems.map((item, index) => (
-        <div className="work-box fade-anim" key={index}>
+      {projects.map((item, index) => (
+        <div className="work-box fade-anim" key={item._id || index}>
           <div className="thumb">
-            <div
-              className="image scale"
-              data-cursor-text="View Details"
-              data-cursor-text-red
-            >
-              <Link href="/portfolio-details">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  style={{ height: 'auto' }}
-                />
+            <div className="image scale" data-cursor-text="View Details" data-cursor-text-red>
+              <Link href={`/portfolio/${item.slug?.current}`}>
+                {item.thumbnail ? (
+                  <Image
+                    src={urlFor(item.thumbnail).width(600).height(400).url()}
+                    alt={item.title}
+                    width={600}
+                    height={400}
+                    style={{ height: "auto" }}
+                  />
+                ) : (
+                  <div style={{ width: 600, height: 400, background: "#222" }} />
+                )}
               </Link>
             </div>
           </div>
           <div className="content">
             <h3 className="title">
-              <Link href="/portfolio-details">{item.title}</Link>
+              <Link href={`/portfolio/${item.slug?.current}`}>{item.title}</Link>
             </h3>
             <div className="meta">
-              <span className="tag">{item.tags}</span>
-              <span className="date">{item.date}</span>
+              <span className="tag">{item.tags?.join(", ") || ""}</span>
+              <span className="date">{item.year ? `(${item.year})` : ""}</span>
             </div>
           </div>
         </div>
       ))}
     </div>
   );
-}
+};
 
-const WorkAreaSix = () => {
+const WorkAreaSix = ({ projects = [] }: WorkAreaSixProps) => {
   return (
     <section className="work-area-6">
       <div className="container large">
         <div className="work-area-6-inner">
           <div className="works-wrapper-box">
-            <WorksWrapperSix />
+            <WorksWrapperSix projects={projects} />
           </div>
         </div>
       </div>
