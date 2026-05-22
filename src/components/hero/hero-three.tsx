@@ -43,7 +43,14 @@ export default function HeroThree({
                   data-delay="0.45"
                 >
                   {title}
-                  <Image className="title-shape-1" src={shape_1} alt="shape" style={{ filter: "grayscale(100%) brightness(0.7)" }} />
+                  <Image
+                    className="title-shape-1"
+                    src={shape_1}
+                    alt=""
+                    aria-hidden="true"
+                    priority
+                    style={{ filter: "grayscale(100%) brightness(0.7)", width: "auto", height: "auto" }}
+                  />
                   {" "}
                   <span
                     className="text-underline hover-image-wrpper"
@@ -60,7 +67,13 @@ export default function HeroThree({
                       style={{ height: "auto" }}
                     />
                   </span>
-                  <Image className="title-shape-2" src={shape_2} alt="shape" style={{ filter: "grayscale(100%) brightness(0.7)" }} />
+                  <Image
+                    className="title-shape-2"
+                    src={shape_2}
+                    alt=""
+                    aria-hidden="true"
+                    style={{ filter: "grayscale(100%) brightness(0.7)", width: "auto", height: "auto" }}
+                  />
                 </h1>
               </div>
             </div>

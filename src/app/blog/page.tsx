@@ -7,6 +7,8 @@ import FooterFour from "@/layout/footer/footer-four";
 import BlogWrapper from "./_components/blog-wrapper";
 import CtaAreaFour from "@/components/cta/cta-area-4";
 import { urlFor } from "@/sanity/lib/image";
+import { buildMetadata } from "@/lib/seo";
+import { CollectionPageSchema, BreadcrumbSchema } from "@/components/seo/json-ld";
 import {
   getBlogPage,
   getBlogPosts,
@@ -20,12 +22,13 @@ export async function generateMetadata(): Promise<Metadata> {
     getSiteSettings(),
   ]);
 
-  return {
-    title: blogPage?.seo?.metaTitle || `Blog — ${siteSettings?.siteName || "re:fabrika"}`,
+  return buildMetadata({
+    title: `Blog — ${siteSettings?.siteName || "re:fabrika"}`,
     description:
-      blogPage?.seo?.metaDescription ||
       "Latest news, insights, and articles from re:fabrika digital marketing agency.",
-  };
+    seo: blogPage?.seo,
+    path: "/blog",
+  });
 }
 
 export default async function BlogPage() {
@@ -48,6 +51,22 @@ export default async function BlogPage() {
 
   return (
     <>
+      <CollectionPageSchema
+        name="Blog"
+        description="Latest news, insights, and articles from re:fabrika."
+        path="/blog"
+        items={blogPosts.map((p) => ({
+          name: p.title,
+          url: `/blog/${p.slug?.current}`,
+        }))}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Blog", url: "/blog" },
+        ]}
+      />
+
       <HeaderSeven
         headerText={siteSettings?.headerText}
         logoImage={siteSettings?.logo}

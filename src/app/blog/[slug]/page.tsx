@@ -10,6 +10,7 @@ import CtaAreaFour from "@/components/cta/cta-area-4";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
 import { BlogPostingSchema, BreadcrumbSchema } from "@/components/seo/json-ld";
+import { buildMetadata } from "@/lib/seo";
 import {
   getBlogPost,
   getAllBlogSlugs,
@@ -38,13 +39,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   ]);
 
   if (!post) {
-    return { title: "Post Not Found" };
+    return { title: "Post Not Found", robots: { index: false, follow: false } };
   }
 
-  return {
-    title: post.seo?.metaTitle || `${post.title} — ${siteSettings?.siteName || "re:fabrika"}`,
-    description: post.seo?.metaDescription || post.excerpt,
-  };
+  return buildMetadata({
+    title: `${post.title} — ${siteSettings?.siteName || "re:fabrika"}`,
+    description: post.excerpt,
+    seo: post.seo,
+    path: `/blog/${post.slug?.current}`,
+    type: "article",
+    publishedTime: post.publishedAt,
+    modifiedTime: post.publishedAt,
+    authors: post.author ? [post.author] : undefined,
+    images: post.thumbnail ? [post.thumbnail] : undefined,
+  });
 }
 
 export default async function BlogPostPage({ params }: Props) {

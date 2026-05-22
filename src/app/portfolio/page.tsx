@@ -5,6 +5,8 @@ import FooterFour from "@/layout/footer/footer-four";
 import PortfolioWrapper from "./_components/portfolio-wrapper";
 import CtaAreaFour from "@/components/cta/cta-area-4";
 import WorkAreaSix from "@/components/work/work-area-6";
+import { buildMetadata } from "@/lib/seo";
+import { CollectionPageSchema, BreadcrumbSchema } from "@/components/seo/json-ld";
 import {
   getPortfolioPage,
   getPortfolioProjects,
@@ -18,12 +20,12 @@ export async function generateMetadata(): Promise<Metadata> {
     getSiteSettings(),
   ]);
 
-  return {
-    title: portfolioPage?.seo?.metaTitle || `Portfolio — ${siteSettings?.siteName || "re:fabrika"}`,
-    description:
-      portfolioPage?.seo?.metaDescription ||
-      "Explore our portfolio of digital marketing and branding projects.",
-  };
+  return buildMetadata({
+    title: `Portfolio — ${siteSettings?.siteName || "re:fabrika"}`,
+    description: "Explore our portfolio of digital marketing and branding projects.",
+    seo: portfolioPage?.seo,
+    path: "/portfolio",
+  });
 }
 
 export default async function PortfolioPage() {
@@ -36,6 +38,22 @@ export default async function PortfolioPage() {
 
   return (
     <>
+      <CollectionPageSchema
+        name="Portfolio"
+        description="Explore our portfolio of digital marketing and branding projects."
+        path="/portfolio"
+        items={projects.map((p) => ({
+          name: p.title,
+          url: `/portfolio/${p.slug?.current}`,
+        }))}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Portfolio", url: "/portfolio" },
+        ]}
+      />
+
       <HeaderSeven
         headerText={siteSettings?.headerText}
         logoImage={siteSettings?.logo}

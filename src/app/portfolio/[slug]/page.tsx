@@ -10,6 +10,7 @@ import PortfolioWrapper from "../_components/portfolio-wrapper";
 import CtaAreaFour from "@/components/cta/cta-area-4";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
+import { buildMetadata } from "@/lib/seo";
 import {
   getPortfolioProject,
   getPortfolioProjects,
@@ -42,15 +43,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   ]);
 
   if (!project) {
-    return { title: "Project Not Found" };
+    return { title: "Project Not Found", robots: { index: false, follow: false } };
   }
 
-  return {
-    title:
-      project.seo?.metaTitle ||
-      `${project.title} — ${siteSettings?.siteName || "re:fabrika"}`,
-    description: project.seo?.metaDescription || project.shortDescription,
-  };
+  return buildMetadata({
+    title: `${project.title} — ${siteSettings?.siteName || "re:fabrika"}`,
+    description: project.shortDescription,
+    seo: project.seo,
+    path: `/portfolio/${project.slug?.current}`,
+    type: "article",
+    images: project.thumbnail ? [project.thumbnail] : undefined,
+  });
 }
 
 export default async function PortfolioDetailPage({ params }: Props) {

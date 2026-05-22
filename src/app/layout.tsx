@@ -132,8 +132,15 @@ const Sequel_sans_medium = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "re:fabrika — Digital Marketing & Brand Growth Agency",
-  description: "re:fabrika is a full-service digital marketing agency specializing in social media, Google & Meta ads, and brand strategy.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com"
+  ),
+  title: {
+    default: "re:fabrika — Digital Marketing & Brand Growth Agency",
+    template: "%s | re:fabrika",
+  },
+  description:
+    "re:fabrika is a full-service digital marketing agency specializing in social media, Google & Meta ads, and brand strategy.",
 };
 
 export default function RootLayout({

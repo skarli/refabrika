@@ -210,3 +210,70 @@ export function BreadcrumbSchema({ items }: { items: { name: string; url: string
 
   return <JsonLd data={data} />;
 }
+
+// CollectionPage Schema (blog/portfolio/services listing)
+export function CollectionPageSchema({
+  name,
+  description,
+  path,
+  items,
+}: {
+  name: string;
+  description?: string;
+  path: string;
+  items: { name: string; url: string }[];
+}) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name,
+    description,
+    url: `${siteUrl}${path}`,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "re:fabrika",
+      url: siteUrl,
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: items.length,
+      itemListElement: items.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        url: item.url.startsWith("http") ? item.url : `${siteUrl}${item.url}`,
+      })),
+    },
+  };
+  return <JsonLd data={data} />;
+}
+
+// ContactPage Schema
+export function ContactPageSchema({
+  siteSettings,
+}: {
+  siteSettings?: SiteSettings | null;
+}) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact",
+    url: `${siteUrl}/contact`,
+    mainEntity: {
+      "@type": "Organization",
+      name: siteSettings?.siteName || "re:fabrika",
+      email: siteSettings?.contactInfo?.email,
+      telephone: siteSettings?.contactInfo?.phone,
+      address: siteSettings?.contactInfo?.address
+        ? {
+            "@type": "PostalAddress",
+            streetAddress: siteSettings.contactInfo.address,
+            addressCountry: "TR",
+          }
+        : undefined,
+    },
+  };
+  return <JsonLd data={data} />;
+}

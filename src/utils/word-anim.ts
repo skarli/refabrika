@@ -39,7 +39,8 @@ export const wordAnimation = () => {
       if (onscroll_value == 1) {
         if (translateX_value && !translateY_value) {
           const split_word = new SplitText(word_anim_item, {
-            type: "chars, words"
+            type: "chars, words",
+            aria: "none"
           })
           gsap.from(split_word.words, {
             duration: data_duration,
@@ -56,7 +57,8 @@ export const wordAnimation = () => {
 
         if (translateY_value && !translateX_value) {
           const split_word = new SplitText(word_anim_item, {
-            type: "chars, words"
+            type: "chars, words",
+            aria: "none"
           })
           gsap.from(split_word.words, {
             duration: 1,
@@ -73,7 +75,8 @@ export const wordAnimation = () => {
 
         if (translateY_value && translateX_value) {
           const split_word = new SplitText(word_anim_item, {
-            type: "chars, words"
+            type: "chars, words",
+            aria: "none"
           })
           gsap.from(split_word.words, {
             duration: 1,
@@ -91,7 +94,8 @@ export const wordAnimation = () => {
 
         if (!translateX_value && !translateY_value) {
           const split_word = new SplitText(word_anim_item, {
-            type: "chars, words"
+            type: "chars, words",
+            aria: "none"
           })
           gsap.from(split_word.words, {
             duration: 1,
@@ -108,7 +112,8 @@ export const wordAnimation = () => {
       } else {
         if (translateX_value > 0 && !translateY_value) {
           const split_word = new SplitText(word_anim_item, {
-            type: "chars, words"
+            type: "chars, words",
+            aria: "none"
           })
           gsap.from(split_word.words, {
             duration: 1,
@@ -121,7 +126,8 @@ export const wordAnimation = () => {
 
         if (translateY_value > 0 && !translateX_value) {
           const split_word = new SplitText(word_anim_item, {
-            type: "chars, words"
+            type: "chars, words",
+            aria: "none"
           })
           gsap.from(split_word.words, {
             duration: 1,
@@ -134,7 +140,8 @@ export const wordAnimation = () => {
 
         if (translateY_value > 0 && translateX_value > 0) {
           const split_word = new SplitText(word_anim_item, {
-            type: "chars, words"
+            type: "chars, words",
+            aria: "none"
           })
           gsap.from(split_word.words, {
             duration: 1,
@@ -148,7 +155,8 @@ export const wordAnimation = () => {
 
         if (!translateX_value && !translateY_value) {
           const split_word = new SplitText(word_anim_item, {
-            type: "chars, words"
+            type: "chars, words",
+            aria: "none"
           })
           gsap.from(split_word.words, {
             duration: 1,

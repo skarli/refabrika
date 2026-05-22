@@ -138,9 +138,9 @@ export const RRTitleAnimation = () => {
         }
       });
 
-      const itemSplitted = new SplitText(splitTextLine, { type: "words, lines" });
+      const itemSplitted = new SplitText(splitTextLine, { type: "words, lines", aria: "none" });
       gsap.set(splitTextLine, { perspective: 400 });
-      itemSplitted.split({ type: "lines" })
+      itemSplitted.split({ type: "lines", aria: "none" })
       tl.from(itemSplitted.lines, {
         duration: 1,
         delay: 0.3,
@@ -170,7 +170,7 @@ export const charAnimation = () => {
       const hasX = !!translateX_value;
       const hasY = !!translateY_value;
 
-      const split_char = new SplitText(item, { type: "chars, words" });
+      const split_char = new SplitText(item, { type: "chars, words", aria: "none" });
 
       if (onscroll_value === 1) {
         if (hasX && !hasY) {
@@ -300,7 +300,7 @@ export const charAnimation = () => {
 
 
 export const textInvertWithScrollAnimation = () => {
-  const split = new SplitText(".text-invert", { type: "lines" });
+  const split = new SplitText(".text-invert", { type: "lines", aria: "none" });
   split.lines.forEach((target) => {
     gsap.to(target, {
       backgroundPositionX: 0,

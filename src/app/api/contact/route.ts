@@ -17,11 +17,52 @@ interface ContactFormData {
   budget: string;
   solution: string;
   message: string;
+  website?: string; // honeypot
+}
+
+// Simple in-memory rate limiter (per IP). 5 requests / 10 min.
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const rateBuckets = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const cutoff = now - RATE_LIMIT_WINDOW_MS;
+  const bucket = (rateBuckets.get(ip) || []).filter((t) => t > cutoff);
+  if (bucket.length >= RATE_LIMIT_MAX) {
+    rateBuckets.set(ip, bucket);
+    return true;
+  }
+  bucket.push(now);
+  rateBuckets.set(ip, bucket);
+  return false;
+}
+
+function getClientIp(request: NextRequest): string {
+  const fwd = request.headers.get("x-forwarded-for");
+  if (fwd) return fwd.split(",")[0].trim();
+  const real = request.headers.get("x-real-ip");
+  if (real) return real;
+  return "unknown";
 }
 
 export async function POST(request: NextRequest) {
+  const ip = getClientIp(request);
+
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { error: "Too many requests. Try again later." },
+      { status: 429 }
+    );
+  }
+
   try {
     const data: ContactFormData = await request.json();
+
+    // Honeypot — silent reject if bots fill the hidden field
+    if (data.website && data.website.length > 0) {
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
 
     // Validate required fields
     if (!data.name || !data.email || !data.phone || !data.budget || !data.solution || !data.message) {
@@ -29,6 +70,19 @@ export async function POST(request: NextRequest) {
         { error: "Missing required fields" },
         { status: 400 }
       );
+    }
+
+    // Basic length limits to prevent abuse
+    if (data.message.length > 5000 || data.name.length > 200) {
+      return NextResponse.json(
+        { error: "Field length exceeded" },
+        { status: 400 }
+      );
+    }
+
+    // Email format check
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
     }
 
     // Save to Sanity

@@ -10,6 +10,7 @@ import ServiceDetailsApproach from "./_components/service-details-approach";
 import ServiceDetailsFeature from "./_components/service-details-feature";
 import ServiceDetailsValueArea from "./_components/service-details-value-area";
 import CtaAreaFour from "@/components/cta/cta-area-4";
+import { buildMetadata } from "@/lib/seo";
 import {
   getService,
   getAllServiceSlugs,
@@ -34,13 +35,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   ]);
 
   if (!service) {
-    return { title: "Service Not Found" };
+    return { title: "Service Not Found", robots: { index: false, follow: false } };
   }
 
-  return {
-    title: service.seo?.metaTitle || `${service.title} — ${siteSettings?.siteName || "re:fabrika"}`,
-    description: service.seo?.metaDescription || service.shortDescription,
-  };
+  return buildMetadata({
+    title: `${service.title} — ${siteSettings?.siteName || "re:fabrika"}`,
+    description: service.shortDescription,
+    seo: service.seo,
+    path: `/services/${service.slug?.current}`,
+  });
 }
 
 export default async function ServiceDetailPage({ params }: Props) {

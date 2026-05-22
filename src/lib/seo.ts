@@ -23,7 +23,7 @@ interface GenerateMetadataOptions {
   images?: any[];
 }
 
-export function generateMetadata({
+export function buildMetadata({
   title,
   description,
   seo,
@@ -38,8 +38,9 @@ export function generateMetadata({
   const metaDescription = seo?.metaDescription || description || "";
   const canonical = seo?.canonicalUrl || `${siteUrl}${path}`;
 
-  // Get OG image
-  let ogImage = `${siteUrl}/og-default.jpg`;
+  // Get OG image. If neither Sanity seo.ogImage nor article images,
+  // we rely on Next.js root opengraph-image.tsx auto-generation.
+  let ogImage: string | undefined;
   if (seo?.ogImage) {
     ogImage = urlFor(seo.ogImage).width(1200).height(630).url();
   } else if (images && images.length > 0) {
@@ -63,14 +64,16 @@ export function generateMetadata({
       siteName: "Re:Fabrika",
       type: type,
       locale: "tr_TR",
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: metaTitle,
-        },
-      ],
+      ...(ogImage && {
+        images: [
+          {
+            url: ogImage,
+            width: 1200,
+            height: 630,
+            alt: metaTitle,
+          },
+        ],
+      }),
       ...(type === "article" && {
         publishedTime,
         modifiedTime,
@@ -81,7 +84,7 @@ export function generateMetadata({
       card: "summary_large_image",
       title: metaTitle,
       description: metaDescription,
-      images: [ogImage],
+      ...(ogImage && { images: [ogImage] }),
     },
   };
 }

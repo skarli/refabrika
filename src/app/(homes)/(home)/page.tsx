@@ -18,6 +18,7 @@ import {
   WebSiteSchema,
   LocalBusinessSchema,
 } from "@/components/seo/json-ld";
+import { buildMetadata } from "@/lib/seo";
 import {
   getHomePage,
   getSiteSettings,
@@ -30,17 +31,14 @@ export async function generateMetadata(): Promise<Metadata> {
     getSiteSettings(),
   ]);
 
-  return {
-    title: homePage?.seo?.metaTitle || siteSettings?.siteName || "re:fabrika",
+  return buildMetadata({
+    title: siteSettings?.siteName || "re:fabrika — Digital Marketing & Brand Growth Agency",
     description:
-      homePage?.seo?.metaDescription ||
       siteSettings?.siteDescription ||
-      "Digital marketing & brand growth agency",
-    openGraph: {
-      title: homePage?.seo?.metaTitle || siteSettings?.siteName,
-      description: homePage?.seo?.metaDescription || siteSettings?.siteDescription,
-    },
-  };
+      "Digital marketing & brand growth agency since 2009. Social media, Google & Meta ads, brand strategy.",
+    seo: homePage?.seo,
+    path: "/",
+  });
 }
 
 export default async function HomePage() {
@@ -59,7 +57,6 @@ export default async function HomePage() {
       <CustomCursor />
 
       <HeaderSeven
-        headerText={siteSettings?.headerText}
         logoImage={siteSettings?.logo}
         navigation={navigation || undefined}
         siteSettings={siteSettings || undefined}
@@ -81,8 +78,8 @@ export default async function HomePage() {
           <div>
             <div className="body-bg">
               <div className="container large">
-                <Image src={shape} alt="image" />
-                <Image src={shape} alt="image" />
+                <Image src={shape} alt="" aria-hidden="true" priority style={{ width: "auto", height: "auto" }} />
+                <Image src={shape} alt="" aria-hidden="true" style={{ width: "auto", height: "auto" }} />
               </div>
             </div>
 

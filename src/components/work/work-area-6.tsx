@@ -25,7 +25,24 @@ export const WorksWrapperSix = ({ projects = [] }: WorkAreaSixProps) => {
                     style={{ height: "auto" }}
                   />
                 ) : (
-                  <div style={{ width: 600, height: 400, background: "#222" }} />
+                  <div
+                    style={{
+                      width: "100%",
+                      aspectRatio: "3/2",
+                      background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: "15px",
+                      color: "#e94560",
+                      fontSize: "14px",
+                      fontWeight: 500,
+                      textTransform: "uppercase",
+                      letterSpacing: "2px",
+                    }}
+                  >
+                    {item.tags?.[0] || "Project"}
+                  </div>
                 )}
               </Link>
             </div>

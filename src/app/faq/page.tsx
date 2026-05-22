@@ -6,6 +6,7 @@ import FaqWrapper from "./_components/faq-wrapper";
 import FAQArea from "@/components/faq/faq-area";
 import CtaAreaFour from "@/components/cta/cta-area-4";
 import { FAQPageSchema, BreadcrumbSchema } from "@/components/seo/json-ld";
+import { buildMetadata } from "@/lib/seo";
 import {
   getFaqPage,
   getSiteSettings,
@@ -18,12 +19,12 @@ export async function generateMetadata(): Promise<Metadata> {
     getSiteSettings(),
   ]);
 
-  return {
-    title: faqPage?.seo?.metaTitle || `FAQ — ${siteSettings?.siteName || "re:fabrika"}`,
-    description:
-      faqPage?.seo?.metaDescription ||
-      "Frequently asked questions about re:fabrika's digital marketing and advertising services.",
-  };
+  return buildMetadata({
+    title: `FAQ — ${siteSettings?.siteName || "re:fabrika"}`,
+    description: "Frequently asked questions about re:fabrika's digital marketing and advertising services.",
+    seo: faqPage?.seo,
+    path: "/faq",
+  });
 }
 
 export default async function FaqPage() {

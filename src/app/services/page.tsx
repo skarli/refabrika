@@ -5,6 +5,8 @@ import FooterFour from "@/layout/footer/footer-four";
 import ServicesWrapper from "./_components/services-wrapper";
 import CtaAreaFour from "@/components/cta/cta-area-4";
 import ServiceAreaFive from "@/components/services/service-area-5";
+import { buildMetadata } from "@/lib/seo";
+import { CollectionPageSchema, BreadcrumbSchema } from "@/components/seo/json-ld";
 import {
   getServicesPage,
   getServices,
@@ -18,12 +20,12 @@ export async function generateMetadata(): Promise<Metadata> {
     getSiteSettings(),
   ]);
 
-  return {
-    title: servicesPage?.seo?.metaTitle || `Services — ${siteSettings?.siteName || "re:fabrika"}`,
-    description:
-      servicesPage?.seo?.metaDescription ||
-      "Explore our digital marketing and branding services.",
-  };
+  return buildMetadata({
+    title: `Services — ${siteSettings?.siteName || "re:fabrika"}`,
+    description: "Explore our digital marketing and branding services.",
+    seo: servicesPage?.seo,
+    path: "/services",
+  });
 }
 
 export default async function ServicesPage() {
@@ -36,6 +38,22 @@ export default async function ServicesPage() {
 
   return (
     <>
+      <CollectionPageSchema
+        name="Services"
+        description="Explore our digital marketing and branding services."
+        path="/services"
+        items={services.map((s) => ({
+          name: s.title,
+          url: `/services/${s.slug?.current}`,
+        }))}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+        ]}
+      />
+
       <HeaderSeven
         headerText={siteSettings?.headerText}
         logoImage={siteSettings?.logo}

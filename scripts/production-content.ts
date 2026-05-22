@@ -1,4 +1,7 @@
 import { createClient } from "@sanity/client";
+import { config } from "dotenv";
+
+config({ path: ".env.local" });
 
 const client = createClient({
   projectId: "28nepg2u",
@@ -54,7 +57,7 @@ async function createSiteSettings() {
     siteName: "re:fabrika",
     siteDescription:
       "AI-Powered Creative Agency | Since 2009 | Fethiye & Istanbul",
-    headerText: "Let's Create Together",
+    headerText: "re:fabrika — digital marketing\n& brand growth agency\n[since 2009]",
     socialLinks: {
       instagram: "https://instagram.com/refabrika",
       facebook: "https://facebook.com/refabrika",
@@ -111,13 +114,11 @@ async function createServices() {
       serialNumber: "[SL: 001]",
       tagLabel: "[Branding]",
       heroDescription:
-        "Your brand is more than a logo—it's the complete experience your customers have with your company. We build brand identities that capture your essence, communicate your values, and create lasting connections with your audience. Since 2009, we've helped brands from startups to established companies redefine their visual identity.",
+        "We create distinctive brand identities that communicate your values and connect with your audience. From strategy to visual identity, we build brands that stand out.",
       heroFeatures: [
         "Logo Design",
         "Brand Strategy",
         "Visual Identity",
-        "Brand Guidelines",
-        "Rebranding",
       ],
       approachTitle: "Our Branding Process",
       approachDescription:
@@ -127,25 +128,19 @@ async function createServices() {
           _key: "step1",
           title: "Brand Discovery",
           description:
-            "We dive deep into your business, audience, competitors, and market to understand what makes you unique. This phase includes stakeholder interviews, market research, and competitive analysis.",
+            "We analyze your business, audience, and competitors to understand what makes you unique.",
         },
         {
           _key: "step2",
           title: "Strategy Development",
           description:
-            "Based on our findings, we define your brand positioning, messaging framework, and visual direction. We create a roadmap that guides all creative decisions.",
+            "We define your brand positioning and visual direction with a clear creative roadmap.",
         },
         {
           _key: "step3",
           title: "Visual Identity Creation",
           description:
-            "Our design team brings your brand to life through logo concepts, color palettes, typography, and visual elements that tell your story.",
-        },
-        {
-          _key: "step4",
-          title: "Brand Guidelines & Rollout",
-          description:
-            "We deliver a comprehensive brand book that ensures consistency across all touchpoints. We also assist with the implementation across your digital and print materials.",
+            "Our design team brings your brand to life through logo, colors, and typography.",
         },
       ],
       featureCards: [
@@ -153,47 +148,38 @@ async function createServices() {
           _key: "f1",
           title: "Strategic Foundation",
           description:
-            "Every design decision is backed by research and strategy. We don't just make things look good—we make them work for your business goals.",
+            "Every design decision is backed by research and strategy.",
         },
         {
           _key: "f2",
           title: "Memorable Design",
           description:
-            "We create visual identities that stand out in crowded markets and stick in people's minds long after they've seen them.",
+            "Visual identities that stand out in crowded markets.",
         },
         {
           _key: "f3",
           title: "Complete Brand Systems",
           description:
-            "From business cards to billboards, we design cohesive systems that work seamlessly across every medium and platform.",
-        },
-        {
-          _key: "f4",
-          title: "Future-Proof Approach",
-          description:
-            "We build flexible brand systems that can evolve with your company while maintaining the core identity that makes you unique.",
+            "Cohesive systems that work across every medium and platform.",
         },
       ],
       valueSectionTitle:
-        "We've helped brands across industries establish strong market presence and connect authentically with their audiences.",
+        "Building brands that make an impact since 2009.",
       valueStats: [
         {
           _key: "v1",
           value: "150+",
-          description:
-            "Brands transformed since 2009. From local businesses to international companies, we've crafted identities that drive recognition and growth.",
+          description: "Brands transformed since 2009.",
         },
         {
           _key: "v2",
           value: "95%",
-          description:
-            "Client satisfaction rate. Our collaborative approach ensures we deliver exactly what your brand needs to succeed.",
+          description: "Client satisfaction rate.",
         },
         {
           _key: "v3",
           value: "3x",
-          description:
-            "Average increase in brand recognition after rebranding. Strong visual identity directly impacts how customers perceive and remember you.",
+          description: "Average brand recognition increase.",
         },
       ],
       faqs: [
@@ -201,25 +187,25 @@ async function createServices() {
           _key: "faq1",
           question: "How long does the branding process take?",
           answer:
-            "A complete brand identity project typically takes 6-8 weeks, depending on the scope. This includes discovery, strategy, design iterations, and final delivery. Rush projects can be accommodated with adjusted timelines.",
+            "A complete brand identity project typically takes 4-6 weeks, including discovery, design, and delivery.",
         },
         {
           _key: "faq2",
-          question: "What's included in a brand guidelines document?",
+          question: "What's included in brand guidelines?",
           answer:
-            "Our brand guidelines include logo usage rules, color specifications (CMYK, RGB, Pantone), typography system, imagery style, iconography, voice and tone guidelines, and application examples for various media.",
+            "Logo usage rules, color specs, typography system, and application examples for various media.",
         },
         {
           _key: "faq3",
           question: "How many logo concepts will I receive?",
           answer:
-            "We typically present 3-5 distinct logo concepts in the initial round. After your feedback, we refine the chosen direction through 2-3 revision rounds until we achieve the perfect result.",
+            "We present 3-5 distinct concepts, then refine the chosen direction through 2-3 revision rounds.",
         },
         {
           _key: "faq4",
           question: "Do you handle trademark registration?",
           answer:
-            "While we don't handle legal trademark registration directly, we design with trademark viability in mind and can recommend trusted legal partners for the registration process.",
+            "We design with trademark viability in mind and can recommend trusted legal partners.",
         },
       ],
     },
@@ -234,41 +220,33 @@ async function createServices() {
       serialNumber: "[SL: 002]",
       tagLabel: "[Development]",
       heroDescription:
-        "We build websites and web applications that don't just look beautiful—they perform exceptionally. Using the latest technologies like Next.js, Laravel, and headless CMS solutions, we create digital experiences that load fast, rank high, and convert visitors into customers.",
+        "We build high-performance websites and web applications using Next.js, Laravel, and headless CMS. Fast, SEO-friendly, and conversion-optimized.",
       heroFeatures: [
         "Next.js & React",
         "Laravel & PHP",
         "Headless CMS",
-        "E-commerce",
-        "Custom APIs",
       ],
       approachTitle: "Our Development Process",
       approachDescription:
-        "We combine agile methodology with meticulous planning to deliver web projects that exceed expectations on time and budget.",
+        "We combine agile methodology with meticulous planning to deliver web projects on time and budget.",
       approachSteps: [
         {
           _key: "step1",
           title: "Discovery & Planning",
           description:
-            "We analyze your requirements, define user stories, plan the architecture, and select the optimal technology stack for your project needs.",
+            "We analyze your requirements and select the optimal technology stack.",
         },
         {
           _key: "step2",
           title: "UX/UI Design",
           description:
-            "Our design team creates wireframes and high-fidelity prototypes. We test user flows and iterate until the experience is perfect.",
+            "Our design team creates wireframes and prototypes for the best experience.",
         },
         {
           _key: "step3",
           title: "Development & Testing",
           description:
-            "We build your solution using modern frameworks and best practices. Continuous integration and testing ensure quality at every step.",
-        },
-        {
-          _key: "step4",
-          title: "Launch & Optimization",
-          description:
-            "After thorough QA, we deploy to production and monitor performance. We provide ongoing support and continuous improvements.",
+            "We build using modern frameworks with continuous testing for quality.",
         },
       ],
       featureCards: [
@@ -276,73 +254,64 @@ async function createServices() {
           _key: "f1",
           title: "Modern Tech Stack",
           description:
-            "We use Next.js 15, Laravel 12, PostgreSQL, Redis, and AI integrations. Your project is built on proven, scalable technologies.",
+            "Next.js 15, Laravel 12, PostgreSQL, Redis, and AI integrations.",
         },
         {
           _key: "f2",
           title: "Performance First",
           description:
-            "Every site we build achieves 90+ PageSpeed scores. Fast loading means better user experience and higher search rankings.",
+            "Every site achieves 90+ PageSpeed scores for better UX.",
         },
         {
           _key: "f3",
           title: "SEO Ready",
           description:
-            "Server-side rendering, structured data, and semantic HTML ensure your site is optimized for search engines from day one.",
-        },
-        {
-          _key: "f4",
-          title: "Scalable Architecture",
-          description:
-            "We build systems that grow with you. Whether you're expecting 100 or 100,000 users, your site will perform flawlessly.",
+            "Server-side rendering and structured data from day one.",
         },
       ],
       valueSectionTitle:
-        "We leverage cutting-edge technology to build web solutions that drive real business results.",
+        "Web solutions that drive real business results.",
       valueStats: [
         {
           _key: "v1",
           value: "200+",
-          description:
-            "Websites and applications delivered. From landing pages to complex platforms, we've built solutions for every need.",
+          description: "Websites and applications delivered.",
         },
         {
           _key: "v2",
           value: "99.9%",
-          description:
-            "Uptime guarantee on managed projects. We use Vercel, AWS, and enterprise-grade infrastructure for reliability.",
+          description: "Uptime guarantee on managed projects.",
         },
         {
           _key: "v3",
           value: "<1s",
-          description:
-            "Average page load time. Our performance-focused approach ensures visitors never wait.",
+          description: "Average page load time.",
         },
       ],
       faqs: [
         {
           _key: "faq1",
-          question: "Which technologies do you use for web development?",
+          question: "Which technologies do you use?",
           answer:
-            "We primarily use Next.js 15 with React for frontend, Laravel 12 for complex backends, Sanity CMS for content management, PostgreSQL/Supabase for databases, and Redis/Upstash for caching. We choose the best stack based on your specific requirements.",
+            "Next.js 15, Laravel 12, Sanity CMS, PostgreSQL, and Redis. We choose the best stack for your needs.",
         },
         {
           _key: "faq2",
           question: "How long does it take to build a website?",
           answer:
-            "A standard corporate website takes 4-8 weeks. E-commerce projects typically require 8-12 weeks. Complex web applications can take 3-6 months. We provide detailed timelines during the discovery phase.",
+            "Corporate sites: 4-8 weeks. E-commerce: 8-12 weeks. Complex apps: 3-6 months.",
         },
         {
           _key: "faq3",
           question: "Do you provide hosting and maintenance?",
           answer:
-            "Yes, we offer managed hosting on Vercel or AWS with 24/7 monitoring, automatic backups, security updates, and performance optimization. Maintenance packages include content updates and ongoing improvements.",
+            "Yes, managed hosting on Vercel/AWS with 24/7 monitoring, backups, and updates.",
         },
         {
           _key: "faq4",
-          question: "Can you integrate with existing systems and APIs?",
+          question: "Can you integrate with existing systems?",
           answer:
-            "Absolutely. We have experience integrating with payment gateways, ERPs, CRMs, marketing automation tools, and custom APIs. We build secure, well-documented integrations.",
+            "Yes, payment gateways, ERPs, CRMs, and custom APIs with secure integrations.",
         },
       ],
     },
@@ -353,45 +322,37 @@ async function createServices() {
       number: "(003)",
       order: 3,
       shortDescription:
-        "Data-driven marketing strategies that deliver measurable results. SEO, SEM, and performance marketing powered by AI and server-side tracking.",
+        "Data-driven marketing with SEO, SEM, and performance marketing powered by AI and server-side tracking.",
       serialNumber: "[SL: 003]",
       tagLabel: "[Marketing]",
       heroDescription:
-        "We don't just run ads—we build complete digital marketing ecosystems. With server-side tracking, Conversion API integration, and AI-powered optimization, we deliver marketing that's accurate, efficient, and profitable. Our technical approach sets us apart in a post-iOS 14 world.",
+        "We build complete digital marketing ecosystems with server-side tracking and Conversion API for accurate, profitable campaigns.",
       heroFeatures: [
         "SEO/SEM",
         "Meta & Google Ads",
         "Conversion API",
-        "GTM Server",
-        "Analytics",
       ],
       approachTitle: "Our Marketing Process",
       approachDescription:
-        "We combine technical excellence with creative strategy to build marketing systems that scale profitably.",
+        "Technical excellence with creative strategy to build marketing systems that scale.",
       approachSteps: [
         {
           _key: "step1",
           title: "Audit & Analysis",
           description:
-            "We analyze your current marketing efforts, tracking setup, competitor landscape, and identify opportunities for growth and optimization.",
+            "We analyze your marketing efforts and identify optimization opportunities.",
         },
         {
           _key: "step2",
           title: "Strategy Development",
           description:
-            "Based on data, we create a comprehensive marketing strategy including channel mix, budget allocation, and conversion funnel design.",
+            "Data-driven strategy with channel mix, budget, and funnel design.",
         },
         {
           _key: "step3",
           title: "Technical Setup",
           description:
-            "We implement server-side tracking, Conversion API, enhanced conversions, and proper attribution. This is the foundation for accurate measurement.",
-        },
-        {
-          _key: "step4",
-          title: "Launch & Optimize",
-          description:
-            "We launch campaigns and continuously optimize based on real data. Weekly reports keep you informed of progress and ROI.",
+            "Server-side tracking and Conversion API for accurate measurement.",
         },
       ],
       featureCards: [
@@ -399,73 +360,64 @@ async function createServices() {
           _key: "f1",
           title: "Server-Side Tracking",
           description:
-            "We implement GTM Server and Conversion API for accurate tracking in a cookie-less world. No more lost conversions or inaccurate data.",
+            "GTM Server and Conversion API for accurate cookie-less tracking.",
         },
         {
           _key: "f2",
           title: "AI-Powered Optimization",
           description:
-            "We use AI tools and custom scripts to analyze data, identify patterns, and optimize campaigns faster than humanly possible.",
+            "AI tools to analyze data and optimize campaigns faster.",
         },
         {
           _key: "f3",
           title: "Full-Funnel Strategy",
           description:
-            "From awareness to conversion, we design complete funnels that guide prospects through their journey efficiently.",
-        },
-        {
-          _key: "f4",
-          title: "Transparent Reporting",
-          description:
-            "Real-time dashboards and weekly reports show exactly where your budget goes and what results it generates. No vanity metrics.",
+            "Complete funnels from awareness to conversion.",
         },
       ],
       valueSectionTitle:
-        "Our technical approach to digital marketing delivers measurable results that directly impact your bottom line.",
+        "Measurable results that impact your bottom line.",
       valueStats: [
         {
           _key: "v1",
           value: "30%",
-          description:
-            "Average increase in tracked conversions after implementing server-side tracking. Better data means better decisions.",
+          description: "More tracked conversions with server-side tracking.",
         },
         {
           _key: "v2",
           value: "4.5x",
-          description:
-            "Average ROAS across client campaigns. We focus on profitability, not just traffic or impressions.",
+          description: "Average ROAS across campaigns.",
         },
         {
           _key: "v3",
           value: "50M+",
-          description:
-            "Ad spend managed annually. We have the experience to handle campaigns of any scale efficiently.",
+          description: "Ad spend managed annually.",
         },
       ],
       faqs: [
         {
           _key: "faq1",
-          question: "What is server-side tracking and why is it important?",
+          question: "What is server-side tracking?",
           answer:
-            "Server-side tracking sends data directly from your server to platforms like Meta and Google, bypassing browser restrictions. After iOS 14+ updates, client-side tracking lost up to 40% of conversions. Server-side tracking recovers this data for accurate attribution and optimization.",
+            "Sends data directly to Meta/Google, bypassing browser restrictions. Recovers 30-40% lost conversions.",
         },
         {
           _key: "faq2",
-          question: "What is the minimum ad budget you work with?",
+          question: "What is the minimum ad budget?",
           answer:
-            "We recommend a minimum monthly ad spend of $3,000-5,000 to generate meaningful data for optimization. Our management fee is separate and scales with your budget complexity.",
+            "Minimum $3,000-5,000/month for meaningful optimization data. Management fee is separate.",
         },
         {
           _key: "faq3",
-          question: "How quickly can we expect to see results?",
+          question: "How quickly can we see results?",
           answer:
-            "SEO typically shows significant results in 3-6 months. Paid advertising can generate leads immediately, but optimization takes 4-8 weeks of data collection. We set realistic expectations based on your industry and competition.",
+            "SEO: 3-6 months. Paid ads: immediate leads, optimization takes 4-8 weeks.",
         },
         {
           _key: "faq4",
-          question: "Do you provide reports and analytics?",
+          question: "Do you provide reports?",
           answer:
-            "Yes, we provide real-time dashboards plus weekly written reports that explain performance, insights, and optimization actions. We focus on business metrics like ROAS and CPA, not just clicks and impressions.",
+            "Real-time dashboards plus weekly reports focused on ROAS and CPA metrics.",
         },
       ],
     },
@@ -476,45 +428,37 @@ async function createServices() {
       number: "(004)",
       order: 4,
       shortDescription:
-        "Strategic social media presence that builds community and drives engagement. Content creation, community management, and growth strategies.",
+        "Strategic social media presence with content creation and community management.",
       serialNumber: "[SL: 004]",
       tagLabel: "[Social Media]",
       heroDescription:
-        "Social media is where brands become human. We create content strategies that tell your story, engage your audience, and build genuine community around your brand. From content creation to community management, we handle everything so you can focus on your business.",
+        "We create content strategies that engage your audience and build genuine community around your brand.",
       heroFeatures: [
         "Content Strategy",
         "Visual Design",
         "Community Management",
-        "Influencer Marketing",
-        "Analytics",
       ],
       approachTitle: "Our Social Strategy",
       approachDescription:
-        "We build social media presence that reflects your brand voice and connects authentically with your audience.",
+        "Social media presence that reflects your brand voice and connects authentically.",
       approachSteps: [
         {
           _key: "step1",
           title: "Research & Audit",
           description:
-            "We analyze your current presence, audience demographics, competitor strategies, and industry trends to inform our strategy.",
+            "We analyze your presence, audience, and competitors to inform strategy.",
         },
         {
           _key: "step2",
           title: "Content Strategy",
           description:
-            "We develop a content calendar, define content pillars, establish your brand voice, and create templates for consistent visual identity.",
+            "Content calendar, pillars, brand voice, and visual templates.",
         },
         {
           _key: "step3",
           title: "Content Production",
           description:
-            "Our team creates engaging content—graphics, videos, copywriting—that stops the scroll and drives engagement.",
-        },
-        {
-          _key: "step4",
-          title: "Publish & Engage",
-          description:
-            "We manage posting schedules, respond to comments and messages, and actively engage with your community to build relationships.",
+            "Graphics, videos, and copywriting that drives engagement.",
         },
       ],
       featureCards: [
@@ -522,47 +466,38 @@ async function createServices() {
           _key: "f1",
           title: "Strategic Content",
           description:
-            "Every post has a purpose. We align content with business goals, whether it's awareness, engagement, or conversion.",
+            "Every post aligned with business goals—awareness, engagement, conversion.",
         },
         {
           _key: "f2",
           title: "Visual Excellence",
           description:
-            "Our design team creates thumb-stopping visuals that maintain brand consistency while standing out in crowded feeds.",
+            "Thumb-stopping visuals that stand out in crowded feeds.",
         },
         {
           _key: "f3",
           title: "Active Community",
           description:
-            "We don't just post and ghost. We actively engage with your audience, building real relationships and brand loyalty.",
-        },
-        {
-          _key: "f4",
-          title: "Data-Driven Growth",
-          description:
-            "Monthly analytics reviews inform strategy adjustments. We double down on what works and pivot from what doesn't.",
+            "Real engagement that builds relationships and brand loyalty.",
         },
       ],
       valueSectionTitle:
-        "We transform social media from a time sink into a powerful channel for brand building and business growth.",
+        "Social media as a powerful channel for brand building.",
       valueStats: [
         {
           _key: "v1",
           value: "300%",
-          description:
-            "Average engagement increase in the first 6 months. Strategic content and active community management drive real interaction.",
+          description: "Average engagement increase in 6 months.",
         },
         {
           _key: "v2",
           value: "50+",
-          description:
-            "Brands managed across platforms. From startups to established companies, we know what works for different audiences.",
+          description: "Brands managed across platforms.",
         },
         {
           _key: "v3",
           value: "24hr",
-          description:
-            "Maximum response time for community management. We keep your audience engaged and your reputation protected.",
+          description: "Maximum response time for community.",
         },
       ],
       faqs: [
@@ -570,25 +505,25 @@ async function createServices() {
           _key: "faq1",
           question: "Which platforms do you manage?",
           answer:
-            "We manage Instagram, Facebook, LinkedIn, Twitter/X, TikTok, and YouTube. We recommend focusing on 2-3 platforms where your audience is most active rather than spreading thin across all channels.",
+            "Instagram, Facebook, LinkedIn, Twitter/X, TikTok, YouTube. Focus on 2-3 key platforms.",
         },
         {
           _key: "faq2",
-          question: "How many posts per week do you create?",
+          question: "How many posts per week?",
           answer:
-            "Our standard packages include 12-20 posts per month, depending on platforms. We focus on quality and strategy over quantity. Custom content volumes can be arranged based on your needs.",
+            "12-20 posts per month, quality and strategy over quantity.",
         },
         {
           _key: "faq3",
           question: "Do you handle influencer partnerships?",
           answer:
-            "Yes, we identify relevant influencers, negotiate partnerships, manage campaigns, and track results. We focus on authentic partnerships that align with your brand values.",
+            "Yes, we identify, negotiate, and manage authentic influencer partnerships.",
         },
         {
           _key: "faq4",
-          question: "What happens if there's a social media crisis?",
+          question: "What about social media crisis?",
           answer:
-            "We have crisis management protocols in place. We monitor mentions, respond quickly to issues, and escalate to you when needed. We can help develop crisis communication guidelines proactively.",
+            "Crisis protocols in place with monitoring and quick response.",
         },
       ],
     },
@@ -599,45 +534,37 @@ async function createServices() {
       number: "(005)",
       order: 5,
       shortDescription:
-        "Complete e-commerce solutions from platform selection to launch. We build online stores that sell, scale, and succeed.",
+        "Complete e-commerce solutions from platform selection to launch.",
       serialNumber: "[SL: 005]",
       tagLabel: "[E-commerce]",
       heroDescription:
-        "We build e-commerce experiences that convert browsers into buyers. Whether you need a quick launch on İkas or a custom-built solution, we handle everything from store design to payment integration, inventory management, and growth optimization.",
+        "We build e-commerce experiences that convert browsers into buyers with İkas, Shopify, or custom solutions.",
       heroFeatures: [
         "İkas & Shopify",
         "Custom Development",
         "Payment Integration",
-        "Inventory Systems",
-        "Conversion Optimization",
       ],
       approachTitle: "Our E-commerce Process",
       approachDescription:
-        "We build online stores that are beautiful, functional, and optimized for sales from day one.",
+        "Online stores that are beautiful, functional, and optimized for sales.",
       approachSteps: [
         {
           _key: "step1",
           title: "Platform Selection",
           description:
-            "We analyze your products, volume, budget, and growth plans to recommend the optimal platform—İkas, Shopify, or custom development.",
+            "We recommend İkas, Shopify, or custom based on your needs.",
         },
         {
           _key: "step2",
           title: "Store Design",
           description:
-            "We design your store with conversion in mind. User experience, mobile optimization, and brand consistency guide every design decision.",
+            "Conversion-focused design with mobile optimization.",
         },
         {
           _key: "step3",
           title: "Development & Integration",
           description:
-            "We build your store, integrate payment gateways, shipping providers, inventory systems, and any third-party tools you need.",
-        },
-        {
-          _key: "step4",
-          title: "Launch & Growth",
-          description:
-            "After thorough testing, we launch your store and continue optimizing. We track conversions, identify bottlenecks, and improve performance.",
+            "Payment, shipping, and inventory integrations.",
         },
       ],
       featureCards: [
@@ -645,73 +572,64 @@ async function createServices() {
           _key: "f1",
           title: "Platform Expertise",
           description:
-            "We're certified partners with İkas and experienced in Shopify, WooCommerce, and custom solutions. We pick the right tool for your needs.",
+            "Certified İkas partner, experienced in Shopify and custom.",
         },
         {
           _key: "f2",
           title: "Conversion Focused",
           description:
-            "Every element is designed to drive sales—from product pages to checkout flow. We obsess over the details that impact conversion rates.",
+            "Every element designed to drive sales.",
         },
         {
           _key: "f3",
           title: "Seamless Integration",
           description:
-            "Payment gateways, cargo companies, accounting software, ERP systems—we integrate everything you need for smooth operations.",
-        },
-        {
-          _key: "f4",
-          title: "Growth Ready",
-          description:
-            "We build stores that can handle your growth. From 10 to 10,000 orders per day, your infrastructure will scale with your success.",
+            "Payment, cargo, ERP, and accounting integrations.",
         },
       ],
       valueSectionTitle:
-        "We've helped businesses of all sizes launch and scale their online stores successfully.",
+        "Helping businesses launch and scale online stores.",
       valueStats: [
         {
           _key: "v1",
           value: "100+",
-          description:
-            "E-commerce stores launched. From fashion to agriculture, we've built successful online stores in diverse industries.",
+          description: "E-commerce stores launched.",
         },
         {
           _key: "v2",
           value: "25%",
-          description:
-            "Average conversion rate improvement after our optimization. Small changes in UX can have massive impact on sales.",
+          description: "Average conversion rate improvement.",
         },
         {
           _key: "v3",
           value: "10M+",
-          description:
-            "Processed in transactions through stores we've built. We understand what it takes to handle serious volume.",
+          description: "Processed in transactions.",
         },
       ],
       faqs: [
         {
           _key: "faq1",
-          question: "Should I use İkas, Shopify, or custom development?",
+          question: "İkas, Shopify, or custom?",
           answer:
-            "İkas is excellent for Turkish market with local payment/cargo integrations. Shopify is great for international sales. Custom development is ideal for unique requirements or very high volume. We recommend based on your specific situation.",
+            "İkas for Turkey, Shopify for international, custom for unique needs.",
         },
         {
           _key: "faq2",
-          question: "What payment methods can you integrate?",
+          question: "What payment methods?",
           answer:
-            "We integrate all major Turkish payment gateways (iyzico, PayTR, Param), international options (Stripe, PayPal), and installment solutions. We also handle 3D Secure and PCI compliance requirements.",
+            "iyzico, PayTR, Stripe, PayPal with 3D Secure and PCI compliance.",
         },
         {
           _key: "faq3",
           question: "Can you migrate from another platform?",
           answer:
-            "Yes, we handle complete migrations including products, customers, orders, and SEO preservation. We ensure minimal disruption and maintain your search rankings during the transition.",
+            "Complete migrations with SEO preservation and minimal disruption.",
         },
         {
           _key: "faq4",
-          question: "Do you handle inventory and shipping integrations?",
+          question: "Inventory and shipping integrations?",
           answer:
-            "Absolutely. We integrate with major cargo companies (Aras, Yurtiçi, MNG, PTT), marketplace syncs (Trendyol, Hepsiburada, N11), and inventory management systems.",
+            "Aras, Yurtiçi, MNG, PTT, Trendyol, Hepsiburada integrations.",
         },
       ],
     },
@@ -742,7 +660,7 @@ async function createPortfolio() {
       date: "January 2024",
       technology: "İkas, Next.js, Figma, Meta Ads",
       shortDescription:
-        "A comprehensive digital transformation for Turkey's innovative farm-to-table e-commerce platform.",
+        "Digital transformation for Turkey's farm-to-table e-commerce platform.",
       fullDescription: [
         {
           _type: "block",
@@ -752,104 +670,28 @@ async function createPortfolio() {
             {
               _type: "span",
               _key: "span1",
-              text: "Online Çiftçi is revolutionizing how Turkish consumers access fresh, local produce. When they approached us, they had a vision but needed a complete digital presence to bring it to life. We delivered a full-stack solution that transformed their business.",
+              text: "Online Çiftçi connects Turkish consumers with fresh, local produce. We delivered a complete digital solution including brand identity, İkas e-commerce platform, and Meta Ads marketing strategy.",
             },
           ],
         },
         {
           _type: "block",
           _key: "block2",
-          style: "h2",
+          style: "normal",
           children: [
             {
               _type: "span",
               _key: "span2",
-              text: "The Challenge",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block3",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span3",
-              text: "Online Çiftçi needed to stand out in the competitive Turkish e-commerce market while conveying their unique value proposition—fresh products directly from local farmers. They needed everything: brand identity, e-commerce platform, packaging design, and a marketing strategy to acquire customers.",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block4",
-          style: "h2",
-          children: [
-            {
-              _type: "span",
-              _key: "span4",
-              text: "Our Solution",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block5",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span5",
-              text: "We created a warm, earthy brand identity that reflects the connection between farmers and consumers. The İkas-powered e-commerce platform features intuitive navigation, subscription options for regular deliveries, and a seamless checkout experience optimized for mobile users.",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block6",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span6",
-              text: "Our packaging design extends the brand experience to the physical product, using sustainable materials that align with the company's eco-conscious values. The marketing strategy leverages Meta Ads with server-side tracking for accurate attribution and continuous optimization.",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block7",
-          style: "h2",
-          children: [
-            {
-              _type: "span",
-              _key: "span7",
-              text: "Results",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block8",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span8",
-              text: "Within 6 months of launch, Online Çiftçi achieved a 400% increase in monthly orders, established a loyal subscriber base, and became recognized as a leading farm-to-table platform in their region. The brand identity has received industry recognition and customer praise.",
+              text: "Results: 400% increase in monthly orders, loyal subscriber base, and industry recognition as a leading farm-to-table platform.",
             },
           ],
         },
       ],
       features: [
-        "Complete Brand Identity & Logo Design",
-        "İkas E-commerce Platform Development",
-        "Custom Product Page Templates",
-        "Subscription & Recurring Order System",
-        "Sustainable Packaging Design",
-        "Social Media Content Strategy",
-        "Meta Ads Campaign Management",
-        "Server-Side Tracking Implementation",
+        "Brand Identity & Logo Design",
+        "İkas E-commerce Platform",
+        "Subscription System",
+        "Meta Ads Campaign",
       ],
       seo: {
         metaTitle: "Online Çiftçi Case Study | E-commerce & Branding | re:fabrika",
@@ -870,7 +712,7 @@ async function createPortfolio() {
       date: "March 2024",
       technology: "Laravel 12, PostgreSQL, Redis, Sanity CMS",
       shortDescription:
-        "A luxury yacht charter platform built for performance, featuring real-time availability and booking management.",
+        "Luxury yacht charter platform with real-time booking and availability management.",
       fullDescription: [
         {
           _type: "block",
@@ -880,105 +722,28 @@ async function createPortfolio() {
             {
               _type: "span",
               _key: "span1",
-              text: "Blue More Yachting operates in the competitive Turkish Riviera yacht charter market. They needed a digital presence that matched the luxury of their fleet and streamlined their booking operations. We delivered a complete solution from brand to backend.",
+              text: "Blue More Yachting needed a digital presence matching their luxury fleet. We built a custom Laravel 12 application with real-time booking, dynamic pricing, and multi-currency payments.",
             },
           ],
         },
         {
           _type: "block",
           _key: "block2",
-          style: "h2",
+          style: "normal",
           children: [
             {
               _type: "span",
               _key: "span2",
-              text: "The Challenge",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block3",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span3",
-              text: "Managing yacht availability, pricing, and bookings was handled through spreadsheets and email. The existing website didn't reflect the premium nature of the service and performed poorly in search rankings. International clients struggled with the booking process.",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block4",
-          style: "h2",
-          children: [
-            {
-              _type: "span",
-              _key: "span4",
-              text: "Our Solution",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block5",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span5",
-              text: "We built a custom Laravel 12 application with a sophisticated booking engine that handles real-time availability, dynamic pricing, and multi-currency payments. The PostgreSQL database with Redis caching ensures lightning-fast performance even during peak season.",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block6",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span6",
-              text: "The frontend presents an immersive visual experience with full-screen yacht galleries and smooth interactions. Sanity CMS allows the team to update content, pricing, and availability without technical knowledge. Our SEO strategy targets high-value keywords in multiple languages.",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block7",
-          style: "h2",
-          children: [
-            {
-              _type: "span",
-              _key: "span7",
-              text: "Results",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block8",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span8",
-              text: "The new platform reduced booking administration time by 80% and increased online conversions by 150%. Organic search traffic grew 300% within the first year, establishing Blue More as a leading digital presence in the yacht charter industry.",
+              text: "Results: 80% reduction in admin time, 150% increase in conversions, 300% organic traffic growth.",
             },
           ],
         },
       ],
       features: [
-        "Premium Brand Identity Design",
         "Custom Laravel 12 Backend",
         "Real-Time Booking Engine",
-        "Multi-Currency Payment Processing",
+        "Multi-Currency Payments",
         "Sanity CMS Integration",
-        "PostgreSQL with Redis Caching",
-        "Multi-Language SEO Strategy",
-        "Social Media Management",
-        "Performance Analytics Dashboard",
       ],
       seo: {
         metaTitle: "Blue More Yachting Case Study | Web Development | re:fabrika",
@@ -999,7 +764,7 @@ async function createPortfolio() {
       date: "May 2024",
       technology: "Next.js 15, Vercel, Supabase, Sanity CMS",
       shortDescription:
-        "End-to-end digital solution for a luxury villa rental company, from branding to booking platform to marketing.",
+        "Luxury villa rental company with branding, booking platform, and marketing.",
       fullDescription: [
         {
           _type: "block",
@@ -1009,106 +774,28 @@ async function createPortfolio() {
             {
               _type: "span",
               _key: "span1",
-              text: "Villa Kalkan manages an exclusive portfolio of luxury villas in one of Turkey's most prestigious coastal destinations. They needed a complete digital transformation to compete with international booking platforms and attract high-net-worth travelers directly.",
+              text: "Villa Kalkan manages luxury villas in Kalkan. We delivered Next.js 15 website with Supabase booking system and Sanity CMS for content management.",
             },
           ],
         },
         {
           _type: "block",
           _key: "block2",
-          style: "h2",
+          style: "normal",
           children: [
             {
               _type: "span",
               _key: "span2",
-              text: "The Challenge",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block3",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span3",
-              text: "Villa Kalkan was dependent on third-party platforms like Airbnb and Booking.com, paying significant commissions and losing brand visibility. Their existing website was outdated, mobile-unfriendly, and provided no direct booking capability. They needed to own their customer relationships.",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block4",
-          style: "h2",
-          children: [
-            {
-              _type: "span",
-              _key: "span4",
-              text: "Our Solution",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block5",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span5",
-              text: "We delivered a comprehensive A-to-Z solution. The elegant brand identity reflects Kalkan's sophistication. The Next.js 15 website on Vercel delivers exceptional performance with sub-second load times. Supabase powers the booking system with real-time availability sync and secure payment processing.",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block6",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span6",
-              text: "Sanity CMS gives the team complete control over villa listings, photography, and content. Our digital marketing strategy includes SEO targeting luxury travel keywords, Google Ads for high-intent searches, and retargeting campaigns for past visitors.",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block7",
-          style: "h2",
-          children: [
-            {
-              _type: "span",
-              _key: "span7",
-              text: "Results",
-            },
-          ],
-        },
-        {
-          _type: "block",
-          _key: "block8",
-          style: "normal",
-          children: [
-            {
-              _type: "span",
-              _key: "span8",
-              text: "Direct bookings now account for 60% of revenue, eliminating platform commissions. The average booking value increased 40% as customers engage directly with the premium brand experience. Website traffic from organic search grew 500% year-over-year.",
+              text: "Results: 60% direct bookings (eliminating commissions), 40% higher booking value, 500% organic traffic growth.",
             },
           ],
         },
       ],
       features: [
-        "Luxury Brand Identity Design",
-        "Next.js 15 Website Development",
-        "Vercel Edge Deployment",
+        "Next.js 15 Website",
         "Supabase Booking System",
         "Sanity CMS Integration",
-        "Multi-Language Support (EN/RU/TR)",
-        "Google & Meta Ads Management",
-        "Server-Side Tracking Setup",
-        "Email Marketing Automation",
-        "Review & Reputation Management",
+        "Google & Meta Ads",
       ],
       seo: {
         metaTitle: "Villa Kalkan Case Study | Full Service Digital | re:fabrika",
@@ -2509,32 +2196,33 @@ async function createHomePage() {
   await client.create({
     _type: "homePage",
     // Hero Section
-    heroSubtitle: "Creative Agency",
-    heroTitle: "We craft digital experiences that transform businesses",
-    heroLocation: "Fethiye, Turkey",
+    heroSubtitle: "Full-service digital agency — Since 2009®",
+    heroTitle: "Strategy-driven digital agency, based in",
+    heroLocation: "Fethiye",
     heroDescription:
-      "AI-powered creative agency delivering innovative digital solutions since 2009. We combine cutting-edge technology with strategic thinking to help brands stand out in the digital landscape.",
-    heroButtonText: "Start a Project",
+      "We build brands that perform. From social media management and Google & Meta ads to full-scale digital marketing strategy, we turn visibility into measurable growth.",
+    heroButtonText: "Get started",
     heroButtonLink: "/contact",
-    heroStats: "150+ Brands Transformed",
+    heroStats: "17 years of digital excellence",
     heroSocialLinks: [
       { _key: "ig", label: "Instagram", url: "https://instagram.com/refabrika" },
+      { _key: "li", label: "Linkedin", url: "https://linkedin.com/company/refabrika" },
       { _key: "be", label: "Behance", url: "https://behance.net/refabrika" },
-      { _key: "li", label: "LinkedIn", url: "https://linkedin.com/company/refabrika" },
+      { _key: "tw", label: "X (Twitter)", url: "https://twitter.com/refabrika" },
     ],
 
     // About Section
-    aboutTitle: "About re:fabrika",
+    aboutTitle: "Creating virtual emotion in the universe, for the largest brands & market since",
     aboutYearStart: "2009",
-    aboutYearEnd: "Present",
+    aboutYearEnd: "2026",
     aboutDescription:
-      "Since 2009, we've been at the forefront of digital innovation. Our journey began with a vision to transform how brands connect with their audiences. Today, we're an AI-powered creative agency that combines cutting-edge technology with human creativity. Our team has collaborated with leading brands including Turkcell, Garanti Bank, İşbank, Tunçmatik, Dedeman Hotels, and Lukoil, delivering innovative digital solutions that drive measurable results. Based in Fethiye with a liaison office in Istanbul, we serve clients across Turkey and internationally.",
+      "We help brands and people be part of the solution. As a cause-led branding and communications agency, we harness the power of technology and creativity to drive positive changes. Whether your inquiries are big or small, we're prepared to engage, focusing on complex problems.",
     aboutButtonText: "Learn More",
-    aboutButtonLink: "/about",
+    aboutButtonLink: "/contact",
 
     // Work Section
-    workSectionTitle: "Selected Work",
-    workButtonText: "View All Projects",
+    workSectionTitle: "We find the unique, easy solution for each creative project",
+    workButtonText: "View all work",
     featuredWorks: portfolios.map((p: {_id: string}) => ({
       _type: "reference",
       _ref: p._id,
@@ -2542,10 +2230,10 @@ async function createHomePage() {
     })),
 
     // Services Section
-    servicesSectionTitle: "What We Do",
-    servicesSubtitle: "Our Services",
+    servicesSectionTitle: "Services we provide",
+    servicesSubtitle: "Services",
     servicesDescription:
-      "From brand identity to full-stack development, we offer comprehensive digital solutions powered by the latest technologies and AI tools.",
+      "We are here to build solid and courageous brands that can leave a strong mark on the world.",
     featuredServices: services.map((s: {_id: string}) => ({
       _type: "reference",
       _ref: s._id,
@@ -2553,13 +2241,13 @@ async function createHomePage() {
     })),
 
     // Clients Section
-    clientTitle: "Trusted by Leading Brands",
+    clientTitle: "Client: Helping brands to grow and say their success stories to the world.",
     clientDescription:
-      "We've had the privilege of working with some amazing brands across various industries, from startups to Fortune 500 companies.",
+      "We're a great team of creatives with a strongest capabilities to helping progressive fields achieve their goals. With the best talent on every project done successfully.",
 
     // Blog Section
-    blogSectionTitle: "Latest Insights",
-    blogButtonText: "Read All Articles",
+    blogSectionTitle: "Learn our recent journal",
+    blogButtonText: "Learn all news",
     featuredBlogs: blogs.map((b: {_id: string}) => ({
       _type: "reference",
       _ref: b._id,
@@ -2622,61 +2310,55 @@ async function createPages() {
   // FAQ Page
   await client.create({
     _type: "faqPage",
-    pageTitle: "Frequently Asked Questions",
+    pageTitle: "Learn some common answers about newly projects",
     faqs: [
       {
         _key: "faq1",
-        question: "What is the minimum project budget?",
+        question: "What services does re:fabrika offer?",
         answer:
-          "Our minimum project engagement starts at $5,000. This ensures we can deliver quality work with proper attention to strategy, design, and execution. For ongoing services like social media management or ad management, monthly retainers start at $1,000.",
+          "Social media management, Google & Meta ads, digital marketing strategy, brand identity, and web development.",
       },
       {
         _key: "faq2",
-        question: "How does your project process work?",
+        question: "How do you measure campaign success?",
         answer:
-          "We follow international standards with a structured approach: Discovery (understanding your needs), Strategy (planning the approach), Execution (design and development), and Launch (deployment and optimization). Throughout, you have regular check-ins and approval stages.",
+          "KPIs specific to each project—engagement, reach, conversion rates, ROAS. Monthly reports show progress and ROI.",
       },
       {
         _key: "faq3",
-        question: "What are your payment terms?",
+        question: "What is your typical project timeline?",
         answer:
-          "We offer flexible payment arrangements. Typically, projects start with a 50% deposit, with the remainder due at project milestones or completion. For ongoing services, we bill monthly. We accept bank transfer and international payments.",
+          "Social media: 2-3 weeks. Brand identity: 4-6 weeks. Digital campaigns: 3-4 weeks. We align on deadlines upfront.",
       },
       {
         _key: "faq4",
-        question: "Which industries do you serve?",
+        question: "Do you work with small businesses?",
         answer:
-          "We specialize in tourism and e-commerce, but our expertise extends to various B2B and B2C sectors. Our methodologies are adaptable—what matters is understanding your specific market and audience.",
+          "Yes, all sizes. We tailor our approach to your budget and goals, from startups to established brands.",
       },
       {
         _key: "faq5",
-        question: "How big is your team?",
+        question: "How does the onboarding process work?",
         answer:
-          "Our core team consists of 5 senior professionals with 2-3 junior team members. Additionally, we leverage 10+ AI agents for research, content generation, and automation. This combination allows us to deliver enterprise-quality work with boutique agency attention.",
+          "Discovery call, tailored proposal, strategy approval, then detailed roadmap and content calendar.",
       },
       {
         _key: "faq6",
-        question: "How do you use AI in your work?",
+        question: "Can you manage existing ad accounts?",
         answer:
-          "AI is integral to our process. We use AI agents for market research, content drafting, data analysis, and workflow automation. For technical work, AI assists with code review and testing. Human expertise guides strategy, creativity, and quality—AI multiplies our capacity.",
+          "Absolutely. We audit, identify opportunities, and optimize your existing Google/Meta campaigns.",
       },
       {
         _key: "faq7",
-        question: "Do you work with international clients?",
+        question: "What makes re:fabrika different?",
         answer:
-          "Yes, we work with clients globally. With offices in Fethiye and Istanbul, we serve the Turkish market while our English-speaking team handles international projects. We're experienced with remote collaboration across time zones.",
-      },
-      {
-        _key: "faq8",
-        question: "What technologies do you use?",
-        answer:
-          "We use modern, proven technologies: Next.js and React for frontends, Laravel for complex backends, Sanity CMS for content management, PostgreSQL and Redis for data, and Vercel for deployment. We choose the right tools for each project's needs.",
+          "17 years experience, strategic thinking with hands-on execution. Boutique attention, no cookie-cutter solutions.",
       },
     ],
     seo: {
-      metaTitle: "FAQ | Common Questions About Our Services | re:fabrika",
+      metaTitle: "FAQ - Frequently Asked Questions | re:fabrika",
       metaDescription:
-        "Find answers to common questions about our services, pricing, process, and team. Learn how re:fabrika can help transform your digital presence.",
+        "Common questions about our digital marketing services. Learn about our approach, timelines, and how we can help your brand grow.",
     },
   });
   console.log("   Created FAQ Page");
@@ -2684,31 +2366,32 @@ async function createPages() {
   // Contact Page
   await client.create({
     _type: "contactPage",
-    pageTitle: "Get in Touch",
-    sectionTitle: "Let's Create Together",
+    pageTitle: "Let's drop us a line and get the project started.",
+    sectionTitle: "Get in touch",
     sectionDescription:
-      "Ready to transform your digital presence? Tell us about your project and we'll get back to you within 24 hours.",
-    followTitle: "Follow Us",
+      "We're excited to hear from you and let's start something special together.",
+    followTitle: "Follow",
     formLabels: {
-      namePlaceholder: "Your Name",
-      emailPlaceholder: "Email Address",
-      phonePlaceholder: "Phone Number",
-      companyPlaceholder: "Company Name",
-      budgetPlaceholder: "Project Budget",
-      solutionPlaceholder: "What solution are you looking for?",
-      messagePlaceholder: "Tell us about your project...",
+      namePlaceholder: "Name*",
+      emailPlaceholder: "Email*",
+      phonePlaceholder: "Phone*",
+      companyPlaceholder: "Company",
+      budgetPlaceholder: "Budget*",
+      solutionPlaceholder: "Solution*",
+      messagePlaceholder: "Message*",
       buttonText: "Send Message",
     },
     budgetOptions: [
-      "$5,000 - $10,000",
-      "$10,000 - $25,000",
-      "$25,000 - $50,000",
-      "$50,000+",
+      "5,000 - 10,000",
+      "10,000 - 15,000",
+      "15,000 - 20,000",
+      "20,000 - 25,000",
+      "25,000 - Above",
     ],
     seo: {
-      metaTitle: "Contact Us | Start Your Project | re:fabrika",
+      metaTitle: "Contact Us | re:fabrika",
       metaDescription:
-        "Ready to start your project? Contact re:fabrika for branding, web development, and digital marketing services. We respond within 24 hours.",
+        "Get in touch with re:fabrika. Let's discuss your digital marketing needs and start building your brand.",
     },
   });
   console.log("   Created Contact Page");

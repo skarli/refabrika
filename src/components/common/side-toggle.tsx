@@ -64,8 +64,14 @@ export default function SideToggle({
                   )}
                 </Link>
               </div>
-              <button onClick={onSideToggle} id="side-info-close" className="side-info-close">
-                <i className="fas fa-times"></i>
+              <button
+                onClick={onSideToggle}
+                id="side-info-close"
+                className="side-info-close"
+                aria-label="Close menu"
+                type="button"
+              >
+                <i className="fas fa-times" aria-hidden="true"></i>
               </button>
             </div>
             {/* mobile menu */}

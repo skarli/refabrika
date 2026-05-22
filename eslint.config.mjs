@@ -2,7 +2,7 @@ import next from 'eslint-config-next';
 
 /** @type {import('eslint').FlatConfig[]} */
 const config = [
-  ...next(),
+  ...next,
   {
     rules: {
       'no-unused-vars': [

@@ -5,6 +5,8 @@ import ContactWrapper from "./_components/contact-wrapper";
 import ContactArea from "./_components/contact-area";
 import FooterFour from "@/layout/footer/footer-four";
 import CtaAreaFour from "@/components/cta/cta-area-4";
+import { buildMetadata } from "@/lib/seo";
+import { ContactPageSchema, BreadcrumbSchema } from "@/components/seo/json-ld";
 import {
   getContactPage,
   getSiteSettings,
@@ -17,12 +19,12 @@ export async function generateMetadata(): Promise<Metadata> {
     getSiteSettings(),
   ]);
 
-  return {
-    title: contactPage?.seo?.metaTitle || `Contact — ${siteSettings?.siteName || "re:fabrika"}`,
-    description:
-      contactPage?.seo?.metaDescription ||
-      "Get in touch with re:fabrika. Let's talk about your next digital marketing project.",
-  };
+  return buildMetadata({
+    title: `Contact — ${siteSettings?.siteName || "re:fabrika"}`,
+    description: "Get in touch with re:fabrika. Let's talk about your next digital marketing project.",
+    seo: contactPage?.seo,
+    path: "/contact",
+  });
 }
 
 export default async function ContactPage() {
@@ -34,6 +36,14 @@ export default async function ContactPage() {
 
   return (
     <>
+      <ContactPageSchema siteSettings={siteSettings} />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Contact", url: "/contact" },
+        ]}
+      />
+
       <HeaderSeven
         headerText={siteSettings?.headerText}
         logoImage={siteSettings?.logo}
