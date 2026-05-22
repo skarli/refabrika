@@ -26,7 +26,7 @@ export const navigationQuery = groq`*[_type == "navigation"][0]{
 }`;
 
 // ==================== HOME PAGE ====================
-export const homePageQuery = groq`*[_type == "homePage"][0]{
+export const homePageQuery = groq`*[_id == "G7CUbMmRwwvddJXAlE6AvQ"][0]{
   // Hero
   heroSubtitle,
   heroTitle,
