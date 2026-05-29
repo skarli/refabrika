@@ -45,7 +45,6 @@ export default async function ContactPage() {
       />
 
       <HeaderSeven
-        headerText={siteSettings?.headerText}
         logoImage={siteSettings?.logo}
         navigation={navigation || undefined}
         siteSettings={siteSettings || undefined}

@@ -61,7 +61,6 @@ export default async function ServiceDetailPage({ params }: Props) {
   return (
     <>
       <HeaderSeven
-        headerText={siteSettings?.headerText}
         logoImage={siteSettings?.logo}
         navigation={navigation || undefined}
         siteSettings={siteSettings || undefined}

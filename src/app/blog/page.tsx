@@ -68,7 +68,6 @@ export default async function BlogPage() {
       />
 
       <HeaderSeven
-        headerText={siteSettings?.headerText}
         logoImage={siteSettings?.logo}
         navigation={navigation || undefined}
         siteSettings={siteSettings || undefined}

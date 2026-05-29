@@ -85,7 +85,6 @@ export default async function BlogPostPage({ params }: Props) {
       />
 
       <HeaderSeven
-        headerText={siteSettings?.headerText}
         logoImage={siteSettings?.logo}
         navigation={navigation || undefined}
         siteSettings={siteSettings || undefined}

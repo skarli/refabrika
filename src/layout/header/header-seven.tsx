@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/imgs/logo/rewhite.svg";
-import SideToggle from "@/components/common/side-toggle";
+import FullscreenMenu from "@/layout/header/fullscreen-menu";
 import type { SanityImage, NavigationData, SiteSettingsData } from "@/types/sanity";
 import { urlFor } from "@/sanity/lib/image";
 
@@ -18,8 +18,9 @@ export default function HeaderSeven({
   headerText,
   logoImage,
   navigation,
-  siteSettings,
+  siteSettings: _siteSettings,
 }: HeaderSevenProps) {
+  void _siteSettings;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Format header text with line breaks
@@ -71,8 +72,19 @@ export default function HeaderSeven({
                 </div>
               )}
               <div className="header__navicon">
-                <button onClick={() => setIsMobileMenuOpen(true)} className="side-toggle">
-                  (Browse — Menu)
+                <button
+                  type="button"
+                  onClick={() => setIsMobileMenuOpen(true)}
+                  className="side-toggle fs-menu__trigger"
+                  aria-label="Open menu"
+                  aria-expanded={isMobileMenuOpen}
+                >
+                  <span className="fs-menu__trigger-label">Menu</span>
+                  <span className="fs-menu__trigger-icon" aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                  </span>
                 </button>
               </div>
             </div>
@@ -80,15 +92,11 @@ export default function HeaderSeven({
         </div>
       </header>
 
-      {/* side toggle bar */}
-      <SideToggle
+      <FullscreenMenu
         isOpen={isMobileMenuOpen}
-        onSideToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        logoImage={logoImage}
-        navigation={navigation}
-        siteSettings={siteSettings}
+        onClose={() => setIsMobileMenuOpen(false)}
+        menuItems={navigation?.mainMenu}
       />
-      {/* side toggle bar */}
     </>
   );
 }
