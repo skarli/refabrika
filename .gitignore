@@ -37,3 +37,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# internal planning / scratch
+IMPLEMENTATION-PLAN.md
+LARAVEL-BACKEND-SPEC.md
+sanity-nextjs-agent-brief.md
+seed-data.json
+.tmp-screens/
