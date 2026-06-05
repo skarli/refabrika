@@ -262,6 +262,17 @@ export interface ServicesPage {
   seo?: SEO;
 }
 
+export type LegalPageType = "privacy" | "terms" | "refund";
+
+export interface LegalPage {
+  pageType: LegalPageType;
+  title?: string;
+  subtitle?: string;
+  lastUpdated?: string;
+  body?: any[];
+  seo?: SEO;
+}
+
 // Aliases for component props
 export type NavigationData = Navigation;
 export type SiteSettingsData = SiteSettings;

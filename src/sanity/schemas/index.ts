@@ -10,6 +10,7 @@ import service from "./service";
 import servicesPage from "./servicesPage";
 import faqPage from "./faqPage";
 import contactPage from "./contactPage";
+import legalPage from "./legalPage";
 import contactSubmission from "./contactSubmission";
 
 export const schemaTypes = [
@@ -27,6 +28,7 @@ export const schemaTypes = [
   servicesPage,
   faqPage,
   contactPage,
+  legalPage,
 
   // Collection Documents
   blogPost,

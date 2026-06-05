@@ -17,6 +17,7 @@ import {
   serviceSlugsQuery,
   contactPageQuery,
   faqPageQuery,
+  legalPageQuery,
 } from "./queries";
 import type {
   SiteSettings,
@@ -33,6 +34,8 @@ import type {
   Service,
   ContactPage,
   FAQPage,
+  LegalPage,
+  LegalPageType,
 } from "@/types/sanity";
 
 // ==================== SITE SETTINGS ====================
@@ -122,4 +125,14 @@ export async function getContactPage(): Promise<ContactPage | null> {
 
 export async function getFaqPage(): Promise<FAQPage | null> {
   return client.fetch(faqPageQuery, {}, { next: { revalidate: 3600 } });
+}
+
+export async function getLegalPage(
+  pageType: LegalPageType
+): Promise<LegalPage | null> {
+  return client.fetch(
+    legalPageQuery,
+    { pageType },
+    { next: { revalidate: 3600 } }
+  );
 }

@@ -245,6 +245,16 @@ export const contactPageQuery = groq`*[_type == "contactPage"][0]{
   seo
 }`;
 
+// ==================== LEGAL ====================
+export const legalPageQuery = groq`*[_type == "legalPage" && pageType == $pageType][0]{
+  pageType,
+  title,
+  subtitle,
+  lastUpdated,
+  body,
+  seo
+}`;
+
 // ==================== SITEMAP ====================
 export const sitemapQuery = groq`{
   "posts": *[_type == "blogPost"]{ "slug": slug.current, _updatedAt },

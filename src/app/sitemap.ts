@@ -12,6 +12,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: "/services", changeFrequency: "monthly" as const, priority: 0.8 },
     { url: "/contact", changeFrequency: "monthly" as const, priority: 0.6 },
     { url: "/faq", changeFrequency: "monthly" as const, priority: 0.5 },
+    { url: "/privacy", changeFrequency: "yearly" as const, priority: 0.3 },
+    { url: "/terms", changeFrequency: "yearly" as const, priority: 0.3 },
+    { url: "/refund-policy", changeFrequency: "yearly" as const, priority: 0.3 },
   ];
 
   // Fetch dynamic content from Sanity

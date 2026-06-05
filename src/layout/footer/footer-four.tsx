@@ -73,6 +73,17 @@ export default function FooterFour({
                 © {new Date().getFullYear()} re:fabrika — {footerText}
               </p>
             </div>
+            <ul className="footer-legal-list">
+              <li>
+                <Link href="/privacy">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link href="/terms">Terms of Service</Link>
+              </li>
+              <li>
+                <Link href="/refund-policy">Refund Policy</Link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

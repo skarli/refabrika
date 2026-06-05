@@ -110,6 +110,46 @@ export default defineConfig({
                   ])
               ),
 
+            // YASAL SAYFALAR
+            S.listItem()
+              .title("⚖️ Yasal Sayfalar")
+              .child(
+                S.list()
+                  .title("Yasal Sayfalar")
+                  .items([
+                    S.listItem()
+                      .title("Privacy Policy")
+                      .child(
+                        S.document()
+                          .schemaType("legalPage")
+                          .documentId("legalPage-privacy")
+                          .initialValueTemplate("legalPage-by-type", {
+                            pageType: "privacy",
+                          })
+                      ),
+                    S.listItem()
+                      .title("Terms of Service")
+                      .child(
+                        S.document()
+                          .schemaType("legalPage")
+                          .documentId("legalPage-terms")
+                          .initialValueTemplate("legalPage-by-type", {
+                            pageType: "terms",
+                          })
+                      ),
+                    S.listItem()
+                      .title("Refund & Cancellation Policy")
+                      .child(
+                        S.document()
+                          .schemaType("legalPage")
+                          .documentId("legalPage-refund")
+                          .initialValueTemplate("legalPage-by-type", {
+                            pageType: "refund",
+                          })
+                      ),
+                  ])
+              ),
+
             S.divider(),
 
             // İÇERİK
@@ -141,5 +181,20 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
+
+    // Parameterised template so each legal singleton is created with the
+    // correct `pageType` (matched by the website query).
+    templates: (prev) => [
+      ...prev,
+      {
+        id: "legalPage-by-type",
+        title: "Legal Page (by type)",
+        schemaType: "legalPage",
+        parameters: [{ name: "pageType", type: "string" }],
+        value: (params: { pageType: string }) => ({
+          pageType: params.pageType,
+        }),
+      },
+    ],
   },
 });
