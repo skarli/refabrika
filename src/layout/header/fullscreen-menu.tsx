@@ -179,7 +179,7 @@ export default function FullscreenMenu({
               <ul>
                 <li>
                   <a
-                    href="https://www.upwork.com/"
+                    href="https://www.upwork.com/agencies/2057537389625986086/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -206,7 +206,7 @@ export default function FullscreenMenu({
                 </li>
                 <li>
                   <a
-                    href="https://www.linkedin.com/"
+                    href="https://linkedin.com/company/refabrika"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

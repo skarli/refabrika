@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SITE_URL } from "@/lib/site-url";
+import WhatsAppButton from "@/components/common/whatsapp-button";
 import { DM_Sans,Instrument_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "swiper/css/bundle";
@@ -154,6 +155,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${dm_sans.variable} ${instrument_sans.variable} ${bdogrotesk.variable} ${tartuffo.variable} ${tartufffo_trial.variable} ${times_now.variable} ${thunder.variable} ${Sequel_sans_roman.variable} ${Sequel_sans_medium.variable}`}>
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );

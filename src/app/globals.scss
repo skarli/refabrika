@@ -587,3 +587,78 @@
   }
 }
 
+
+// ==================== WHATSAPP STICKY BUTTON ====================
+.wa-fab {
+  position: fixed;
+  right: clamp(16px, 2.5vw, 32px);
+  bottom: clamp(16px, 2.5vw, 32px);
+  z-index: 9990;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--wa-green, #25d366);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s ease;
+
+  .wa-fab__icon {
+    position: relative;
+    z-index: 2;
+    display: block;
+  }
+
+  // Hafif nabız halkası
+  .wa-fab__pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--wa-green, #25d366);
+    opacity: 0.55;
+    z-index: 1;
+    animation: wa-pulse 2.4s ease-out infinite;
+  }
+
+  &:hover {
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: 0 12px 34px rgba(37, 211, 102, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  @media (max-width: 575px) {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@keyframes wa-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-fab .wa-fab__pulse {
+    animation: none;
+    opacity: 0;
+  }
+}
