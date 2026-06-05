@@ -1,4 +1,5 @@
 import type { SiteSettings, BlogPost, Portfolio, Service, FAQPage } from "@/types/sanity";
+import { SITE_URL } from "@/lib/site-url";
 
 interface JsonLdProps {
   data: object | object[];
@@ -28,7 +29,7 @@ export function OrganizationSchema({ siteSettings }: { siteSettings?: SiteSettin
     "@type": "Organization",
     name: siteSettings?.siteName || "re:fabrika",
     description: siteSettings?.siteDescription || "Digital marketing & brand growth agency",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com",
+    url: SITE_URL,
     email: siteSettings?.contactInfo?.email || "sadettin@refabrika.com",
     telephone: siteSettings?.contactInfo?.phone || "+90 532 374 55 68",
     address: {
@@ -53,7 +54,7 @@ export function OrganizationSchema({ siteSettings }: { siteSettings?: SiteSettin
 
 // WebSite Schema
 export function WebSiteSchema({ siteSettings }: { siteSettings?: SiteSettings | null }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+  const siteUrl = SITE_URL;
   const data = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -75,10 +76,10 @@ export function LocalBusinessSchema({ siteSettings }: { siteSettings?: SiteSetti
   const data = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com",
+    "@id": SITE_URL,
     name: siteSettings?.siteName || "re:fabrika",
     description: siteSettings?.siteDescription || "Digital marketing & brand growth agency",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com",
+    url: SITE_URL,
     telephone: siteSettings?.contactInfo?.phone || "+90 532 374 55 68",
     email: siteSettings?.contactInfo?.email || "sadettin@refabrika.com",
     address: {
@@ -108,7 +109,7 @@ export function LocalBusinessSchema({ siteSettings }: { siteSettings?: SiteSetti
 
 // BlogPosting Schema
 export function BlogPostingSchema({ post, siteUrl }: { post: BlogPost; siteUrl?: string }) {
-  const url = siteUrl || process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+  const url = siteUrl || SITE_URL;
   const data = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -136,7 +137,7 @@ export function BlogPostingSchema({ post, siteUrl }: { post: BlogPost; siteUrl?:
 
 // CreativeWork Schema (for Portfolio)
 export function CreativeWorkSchema({ project, siteUrl }: { project: Portfolio; siteUrl?: string }) {
-  const url = siteUrl || process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+  const url = siteUrl || SITE_URL;
   const data = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -156,7 +157,7 @@ export function CreativeWorkSchema({ project, siteUrl }: { project: Portfolio; s
 
 // Service Schema
 export function ServiceSchema({ service, siteUrl }: { service: Service; siteUrl?: string }) {
-  const url = siteUrl || process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+  const url = siteUrl || SITE_URL;
   const data = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -196,7 +197,7 @@ export function FAQPageSchema({ faqPage }: { faqPage: FAQPage }) {
 
 // BreadcrumbList Schema
 export function BreadcrumbSchema({ items }: { items: { name: string; url: string }[] }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+  const siteUrl = SITE_URL;
   const data = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -223,7 +224,7 @@ export function CollectionPageSchema({
   path: string;
   items: { name: string; url: string }[];
 }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+  const siteUrl = SITE_URL;
   const data = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -255,7 +256,7 @@ export function ContactPageSchema({
 }: {
   siteSettings?: SiteSettings | null;
 }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+  const siteUrl = SITE_URL;
   const data = {
     "@context": "https://schema.org",
     "@type": "ContactPage",

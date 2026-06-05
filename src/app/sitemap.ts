@@ -1,7 +1,6 @@
 import { MetadataRoute } from "next";
 import { client } from "@/sanity/lib/client";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+import { SITE_URL as siteUrl } from "@/lib/site-url";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages

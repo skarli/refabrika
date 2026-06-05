@@ -5,9 +5,7 @@ import {
   getServices,
   getSiteSettings,
 } from "@/sanity/lib/fetch";
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+import { SITE_URL } from "@/lib/site-url";
 
 export const revalidate = 3600;
 

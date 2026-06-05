@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site-url";
 import { DM_Sans,Instrument_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "swiper/css/bundle";
@@ -132,9 +133,7 @@ const Sequel_sans_medium = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com"
-  ),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "re:fabrika — Digital Marketing & Brand Growth Agency",
     template: "%s | re:fabrika",

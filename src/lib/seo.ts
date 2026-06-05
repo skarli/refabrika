@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { urlFor } from "@/sanity/lib/image";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://refabrika.com";
+import { SITE_URL as siteUrl } from "@/lib/site-url";
 
 interface SeoData {
   metaTitle?: string;
