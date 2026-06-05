@@ -62,6 +62,38 @@ export default function FullscreenMenu({
         <div className="fs-menu__topbar">
           <span className="fs-menu__brand">re:fabrika</span>
           <div className="fs-menu__topbar-right">
+            <a
+              href="https://client.refabrika.com/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fs-menu__client-login"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <rect
+                  x="4.5"
+                  y="10.5"
+                  width="15"
+                  height="10"
+                  rx="2"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                />
+                <path
+                  d="M8 10.5V7.5a4 4 0 0 1 8 0v3"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <span>Client Login</span>
+            </a>
             <div className="fs-menu__lang" role="group" aria-label="Language">
               <button
                 type="button"

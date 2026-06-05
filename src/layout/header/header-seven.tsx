@@ -72,6 +72,40 @@ export default function HeaderSeven({
                 </div>
               )}
               <div className="header__navicon">
+                <a
+                  href="https://client.refabrika.com/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="header__client-login"
+                  aria-label="Client login"
+                >
+                  <span className="header__client-login-icon" aria-hidden="true">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="4.5"
+                        y="10.5"
+                        width="15"
+                        height="10"
+                        rx="2"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                      />
+                      <path
+                        d="M8 10.5V7.5a4 4 0 0 1 8 0v3"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>
+                  <span className="header__client-login-label">Client Login</span>
+                </a>
                 <button
                   type="button"
                   onClick={() => setIsMobileMenuOpen(true)}
