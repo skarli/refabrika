@@ -62,7 +62,7 @@ export function buildMetadata({
       url: canonical,
       siteName: "Re:Fabrika",
       type: type,
-      locale: "tr_TR",
+      locale: "en_US",
       ...(ogImage && {
         images: [
           {

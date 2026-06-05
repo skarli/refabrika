@@ -140,6 +140,9 @@ export const metadata: Metadata = {
   },
   description:
     "re:fabrika is a full-service digital marketing agency specializing in social media, Google & Meta ads, and brand strategy.",
+  appleWebApp: {
+    title: "Re:fabrika",
+  },
 };
 
 export default function RootLayout({
