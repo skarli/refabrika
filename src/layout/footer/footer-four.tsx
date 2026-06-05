@@ -60,39 +60,6 @@ export default function FooterFour({
                   </li>
                 ))}
               </ul>
-
-              <a
-                href="https://client.refabrika.com/login"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-client-login"
-              >
-                <svg
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <rect
-                    x="4.5"
-                    y="10.5"
-                    width="15"
-                    height="10"
-                    rx="2"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                  />
-                  <path
-                    d="M8 10.5V7.5a4 4 0 0 1 8 0v3"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <span>Client Login</span>
-              </a>
             </div>
           </div>
         </div>
@@ -100,7 +67,7 @@ export default function FooterFour({
 
       <div className="copyright-area">
         <div className="container large">
-          <div className="copyright-area-inner">
+          <div className="copyright-area-inner copyright-area-inner--centered">
             <div className="copyright-text">
               <p className="text">
                 © {new Date().getFullYear()} re:fabrika — {footerText}
