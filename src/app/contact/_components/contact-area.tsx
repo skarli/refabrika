@@ -29,6 +29,12 @@ export default function ContactArea({ contactPage, siteSettings }: ContactAreaPr
 
   const contactEmail = siteSettings?.contactInfo?.email || "sadettin@refabrika.com";
   const socialLinks = siteSettings?.socialLinks || {};
+  const hasSocial = Boolean(
+    socialLinks.instagram ||
+      socialLinks.linkedin ||
+      socialLinks.behance ||
+      socialLinks.dribbble
+  );
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -90,16 +96,62 @@ export default function ContactArea({ contactPage, siteSettings }: ContactAreaPr
                   <a href={`mailTo:${contactEmail}`}>{contactEmail}</a>
                 </p>
               </div>
-              <div className="contact-social">
-                <p className="title">{followTitle}</p>
-                <div className="social-links">
-                  {socialLinks.facebook && <a href={socialLinks.facebook}>Facebook</a>}
-                  {socialLinks.twitter && <a href={socialLinks.twitter}>Twitter</a>}
-                  {socialLinks.linkedin && <a href={socialLinks.linkedin}>LinkedIn</a>}
-                  {socialLinks.instagram && <a href={socialLinks.instagram}>Instagram</a>}
-                  {socialLinks.dribbble && <a href={socialLinks.dribbble}>Dribbble</a>}
-                  {socialLinks.behance && <a href={socialLinks.behance}>Behance</a>}
+              <div className="contact-offices">
+                <div className="contact-office">
+                  <p className="contact-office__tag">Headquarters</p>
+                  <p className="contact-office__addr">
+                    7901 4th St N # 26088
+                    <br />
+                    St. Petersburg, Florida 33702
+                    <br />
+                    United States
+                  </p>
+                  <a className="contact-office__phone" href="tel:+17273017980">
+                    +1 727 301 79 80
+                  </a>
                 </div>
+
+                <div className="contact-office">
+                  <p className="contact-office__tag">Liaison Office</p>
+                  <p className="contact-office__addr">
+                    Akarca, Mustafa Kemal Blv. No:158/A
+                    <br />
+                    48300 Fethiye, Muğla
+                    <br />
+                    Türkiye
+                  </p>
+                  <a className="contact-office__phone" href="tel:+905323745568">
+                    +90 532 374 55 68
+                  </a>
+                </div>
+
+                {hasSocial && (
+                  <div className="contact-social">
+                    <p className="contact-office__tag">{followTitle}</p>
+                    <div className="social-links">
+                      {socialLinks.instagram && (
+                        <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer">
+                          Instagram
+                        </a>
+                      )}
+                      {socialLinks.linkedin && (
+                        <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
+                          LinkedIn
+                        </a>
+                      )}
+                      {socialLinks.behance && (
+                        <a href={socialLinks.behance} target="_blank" rel="noopener noreferrer">
+                          Behance
+                        </a>
+                      )}
+                      {socialLinks.dribbble && (
+                        <a href={socialLinks.dribbble} target="_blank" rel="noopener noreferrer">
+                          Dribbble
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="contact-wrap">
